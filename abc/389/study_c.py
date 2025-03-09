@@ -12,3 +12,5 @@ for _ in range(q):
         head += 1
     else:
         print(heads[head + query[1] - 1] - heads[head])
+
+print(heads)

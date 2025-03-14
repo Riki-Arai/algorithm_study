@@ -8,14 +8,6 @@ print(S.rfind('c')) # -1
 # 文字列の計算評価
 eval("3 * 1")
 
-
-
-########### テクニック集
-# TrueであればYes
-print('NYoe s'[何か条件式::2])
-# FalseであればYes
-print('YNeos'[何か条件式::2])
-
 # 3, 5, 7のいずれであればindexが1となるのでYes
 print(['NO', 'YES'][[7, 5, 3].count(int(input()))])
 

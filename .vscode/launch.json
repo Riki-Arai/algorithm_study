@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test1 debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${fileDirname}/answer.py",
+            "console": "integratedTerminal",
+            "args": ["<", "${fileDirname}/tests/sample-1.in"],
+            "justMyCode": true
+        },
+        {
+            "name": "test2 debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${fileDirname}/answer.py",
+            "console": "integratedTerminal",
+            "args": ["<", "${fileDirname}/tests/sample-2.in"],
+            "justMyCode": true
+        },
+        {
+            "name": "test3 debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${fileDirname}/answer.py",
+            "console": "integratedTerminal",
+            "args": ["<", "${fileDirname}/tests/sample-3.in"],
+            "justMyCode": true
+        },
+        {
+            "name": "test4 debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${fileDirname}/answer.py",
+            "console": "integratedTerminal",
+            "args": ["<", "${fileDirname}/tests/sample-4.in"],
+            "justMyCode": true
+        },
+        {
+            "name": "test5 debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${fileDirname}/answer.py",
+            "console": "integratedTerminal",
+            "args": ["<", "${fileDirname}/tests/sample-5.in"],
+            "justMyCode": true
+        }
+    ]
+}

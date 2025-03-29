@@ -16,7 +16,7 @@
     {
       "label": "Submit by acc",
       "type": "shell",
-      "command": "acc s -- answer.py --language 5078",
+      "command": "acc s -- answer.py --language 5078 -y", // -yを付与することで確認作業を省略できるとatcoder-cliのissueで見つけた
       // なぜかaccによる提出コマンドでは以下のoptionsの設定が必要だった
       "options": {
         "cwd": "${fileDirname}"

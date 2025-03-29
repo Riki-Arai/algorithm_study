@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run oj test",
+      "type": "shell",
+      "command": "oj t -c \"python3 ${fileDirname}/answer.py\" -d ${fileDirname}/tests",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Submit by acc",
+      "type": "shell",
+      "command": "echo ${fileDirname}",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Submit by acc",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "PARENT_DIR_NAME=\"$(basename \"$(dirname \\\"${fileDirname}\\\")\")\"; \
+         CURRENT_DIR_NAME=\"$(basename \\\"${fileDirname}\\\")\"; \
+         FIRST_CHAR=\"${CURRENT_DIR_NAME:0:1}\"; \
+         TASK_NAME=\"${PARENT_DIR_NAME}_${FIRST_CHAR}\"; \
+         acc s -t \"${TASK_NAME}\" -- \"${fileDirname}/answer.py\" --language 5078 -y"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

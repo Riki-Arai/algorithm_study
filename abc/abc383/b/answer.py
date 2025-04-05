@@ -9,7 +9,7 @@ for i in range(H):
             for k in range(H):
                 for l in range(W):
                     if abs(i-k) + abs(j-l) <= D and A_lists[k][l] == ".":
-                       res_list.append((k, l))
+                        res_list.append((k, l))
             res_lists.append(res_list)
 
 res = 0

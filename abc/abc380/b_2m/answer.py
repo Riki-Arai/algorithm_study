@@ -1,0 +1,1 @@
+print(*list(filter(lambda x: x != 0,list(map(len, input().split("|"))))))

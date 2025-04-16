@@ -1,1 +1,1 @@
-H, M = input().split()
+H, M = list(map(int,input().split()))

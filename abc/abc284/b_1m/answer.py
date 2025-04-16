@@ -1,0 +1,6 @@
+N = int(input())
+
+for _ in range(N):
+    T = int(input())
+    A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
+    print(len(list(filter(lambda x: x % 2 != 0, A_list))))

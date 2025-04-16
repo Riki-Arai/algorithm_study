@@ -1,6 +1,2 @@
 N, M = map(int, input().split())
 A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-
-for i in range(N):
-    for j in range(M):
-        

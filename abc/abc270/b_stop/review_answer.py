@@ -1,7 +1,17 @@
-x,y,z = map(int,input().split())
-if x>z>y>0 or z>x>y>0 or 0>y>x>z or 0>y>z>x:
-    print(-1)
-elif x>y>0>z or z>0>y>x:
-    print(abs(z)+abs(x-z))
+x, y, z = map(int, input().split())
+
+def f(a, b, p):
+    if b < a:
+        a, b = b, a
+    return a < p < b
+
+ans = -1
+if f(0, x, y):
+    if f(0, z, y):
+        ans = -1
+    else:
+        ans = abs(z) + abs(z - x)
 else:
-    print(abs(x))
+    ans = abs(x)
+
+print(ans)

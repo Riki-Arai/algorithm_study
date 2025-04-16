@@ -45,3 +45,35 @@ for i in range(7):
                 print("Yes")
                 exit()
 print("No")
+
+
+## first
+#import math, itertools, bisect, functools, copy
+#from collections import defaultdict, Counter, deque
+#from decimal import Decimal, ROUND_HALF_UP, ROUND_UP, ROUND_DOWN # 左からROUND_HALF_UPが四捨五入、続いて切り上げ、切り捨て
+#
+#S = input().strip()
+#
+#pin_lists = [[7], [4], [2, 8], [1, 5], [3, 9], [6], [10]]
+#idx_list = [i for i, s in enumerate(list(S), 1) if s == "0"]
+#
+#if 1 not in idx_list:
+#    print("No")
+#    exit()
+#
+#for idx in idx_list:
+#    for pin_list in pin_lists:
+#        if idx in pin_list:
+#            pin_list.remove(idx)
+#
+#res_list = list(map(lambda x: len(x) != 0, pin_lists))
+#if res_list.count(False) >= 2:
+#    tidx_list = [i for i, x in enumerate(res_list) if x == True]
+#    for i in range(len(tidx_list)-1):
+#        if tidx_list[i] + 1 != tidx_list[i+1]:
+#            print("Yes")
+#            exit()
+#    print("No")
+#else:
+#    print("No")
+#

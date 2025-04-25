@@ -31,8 +31,8 @@
       "command": "bash",
       "args": [
         "-c",
-        "PARENT_DIR_NAME=\"$(basename \"$(dirname \\\"${fileDirname}\\\")\")\"; \
-         CURRENT_DIR_NAME=\"$(basename \\\"${fileDirname}\\\")\"; \
+        "PARENT_DIR_NAME=$(basename $(dirname \"${fileDirname}\")); \
+         CURRENT_DIR_NAME=$(basename \"${fileDirname}\"); \
          FIRST_CHAR=\"${CURRENT_DIR_NAME:0:1}\"; \
          TASK_NAME=\"${PARENT_DIR_NAME}_${FIRST_CHAR}\"; \
          acc s -t \"${TASK_NAME}\" -- \"${fileDirname}/answer.py\" --language 5078 -y"

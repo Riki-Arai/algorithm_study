@@ -1,0 +1,3 @@
+N = int(input())
+
+print(int(bin(N)[2:])*2)

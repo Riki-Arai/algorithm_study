@@ -12,7 +12,6 @@ for i in range(N+1):
 
 print(res)
 
-
 ## first
 #N = int(input())
 #

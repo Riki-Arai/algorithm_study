@@ -1,0 +1,1 @@
+N, L = map(int, input().split()) # 取得例：1 2

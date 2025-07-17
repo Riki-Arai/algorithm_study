@@ -5,5 +5,5 @@ for i in sys.stdin:
     A_list.append(i)
 
 A_list.reverse()
-for a in A_list: 
+for a in A_list:
     print(a.rstrip())

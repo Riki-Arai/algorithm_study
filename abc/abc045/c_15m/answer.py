@@ -1,0 +1,1 @@
+S_list = list(input().strip()) # 取得例："A"

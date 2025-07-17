@@ -2,9 +2,11 @@ H, W = map(int, input().split())
 A = [input() for _ in range(H)]
 B = [input() for _ in range(H)]
 
+# 最初のiとjはインデックスを動かすためのもの
 for i in range(H):
     for j in range(W):
         is_ok = True
+        # kとlで全探索をして一致するかどうかを確認
         for k in range(H):
             for l in range(W):
                 if A[(i+k)%H][(j+l)%W] != B[k][l]:

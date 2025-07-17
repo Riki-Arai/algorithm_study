@@ -1,19 +1,27 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
+N, K = map(int, input().split())
 A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
+B_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
 
-import sys
+x_lists = []
+for i in range(N):
+    x_lists.append([A_list[i], B_list[i]])
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res_list = []
+def dfs(i):
+    if i == N:
+        if abs(res_list[-2]-res_list[-1]) <= K:
+            print("Yes")
+            exit()
+        return
+    x_list = x_lists[i]
+    for x in x_list:
+        res_list.append(x)
+        if len(res_list) >= 2 and abs(res_list[i-1]-res_list[i]) > K:
+            res_list.pop()
+            continue
+        dfs(i+1)
+    if len(res_list):
+        res_list.pop()
+
+dfs(0)
+print("No")

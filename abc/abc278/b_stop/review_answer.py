@@ -1,6 +1,9 @@
+# 時計の表示では1文字ずつ見ると0~9で1周であることがポイント
+# HとMについても周期性があるので注意(A問題でも似たような出題がある)
 H, M = list(map(int,input().split()))
 
 while True:
+    # A, B, C, Dが0~9で1周なのでdivmodでは10を使う
     h0,h1 = divmod(H,10)
     m0,m1 = divmod(M,10)
     x = h0*10+m0

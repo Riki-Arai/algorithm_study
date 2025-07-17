@@ -1,18 +1,29 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+# 深さ優先探索において探索した先で何かしらの理由でreturnするときや、探索し終えた時に現在位置から1つ戻るときにpopすると良さそう
+H, W = map(int, input().split())
+A_lists = [list(map(int, input().split())) for _ in range(H)]
 
-import sys
+move_lists = [(1, 0), (0, 1)]
+res = 0
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+def dfs(i, j, used):
+    global res
+    val = A_lists[i][j]
+    # すでに使っている値なら枝刈り
+    if val in used:
+        return
+    # 今のマスの値を追加
+    used.add(val)
+    # ゴールに到達したらカウントして終了
+    if i == H - 1 and j == W - 1:
+        res += 1
+    else:
+        # 右 or 下へ再帰的に探索
+        for di, dj in move_lists:
+            ni, nj = i + di, j + dj
+            if 0 <= ni < H and 0 <= nj < W:
+                dfs(ni, nj, used)
+    # 再帰から戻るときに戻す
+    used.remove(val)
+
+dfs(0, 0, set())
+print(res)

@@ -1,4 +1,9 @@
 N = int(input())
-Q_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
+q_dict = {}
+for i in range(1, N+1):
+    q, r = map(int, input().split())
+    q_dict[i] = (q, r)
+
 Q = int(input())
-T_lists = [list(map(int, input().split())) for _ in range(Q)] # 取得例:[[1,2], [3,4]・・[9,10]]
+for _ in range(Q):
+    t, d = map(int, input().split())

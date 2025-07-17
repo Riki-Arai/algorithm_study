@@ -1,18 +1,20 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
+import itertools
+
 N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+A_list = [input() for _ in range(N)]
 
-import sys
+for p in itertools.permutations(A_list):
+    for i in range(len(p)-1):
+        res_flag = True
+        count = 0
+        for j in range(len(p[i])):
+            if p[i][j] != p[i+1][j]:
+                count += 1
+        if count != 1:
+            res_flag = False
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+    if res_flag:
+        print("Yes")
+        exit()
+
+print("No")

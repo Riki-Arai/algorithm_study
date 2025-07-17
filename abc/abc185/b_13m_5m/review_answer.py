@@ -8,6 +8,7 @@ for a, b in cafes:
     cur -= a - last_time
     if cur <= 0:
         res = False
+    # 充電の容量が決まっているのでminを使用
     cur = min(n, cur + (b - a))
     last_time = b
 print("Yes" if res else "No")

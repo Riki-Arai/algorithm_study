@@ -1,19 +1,20 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
+N, Q = map(int, input().split())
 A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
 
-import sys
+A_list.sort()
+def is_ok(i, x):
+    return A_list[i] >= x  # 最小値を求めたい場合の例。最大値の場合は i <= 5 のようになる。
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+
+for _ in range(Q):
+    input_ = int(input())
+    ok, ng = N, -1  # 探索範囲の+1 or -1にしたものを指定。okが右側なら最小値、左側なら最大値を導出（例の値は最小値の場合）。
+    while abs(ok - ng) > 1:  # 絶対値を使用しているのでok と ng の大小に関係なく、同じ条件式で良い。
+        mid = (ok + ng) // 2
+        # ok と ng の大小に関わらず変更なし。(参考：https://zenn.dev/forcia_tech/articles/20191223_advent_calendar)
+        if is_ok(mid, input_):
+            ok = mid
+        else:
+            ng = mid
+
+    print(N-ok)

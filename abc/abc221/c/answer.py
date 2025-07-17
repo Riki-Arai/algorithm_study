@@ -1,19 +1,24 @@
+import math, itertools, bisect, functools, copy, decimal
+# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
+from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
+from collections import defaultdict, Counter, deque
+
 N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
 
-import sys
+res = 0
+str_n = str(N)
+p_lists = list(itertools.product([0, 1], repeat=len(str(N))))
+for p_list in p_lists:
+    a_list, b_list = [], []
+    for i, p in enumerate(p_list):
+        if p == 1:
+            a_list.append(str_n[i])
+        else:
+            b_list.append(str_n[i])
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+    a_list.sort(reverse=True)
+    b_list.sort(reverse=True)
+    if len(a_list) > 0 and len(b_list) > 0 and not(a_list[0] == 0 or b_list[0] == 0):
+        res = max(int("".join(a_list)) * int("".join(b_list)), res)
+
+print(res)

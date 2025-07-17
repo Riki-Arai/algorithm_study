@@ -1,18 +1,15 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+from collections import deque
 
-import sys
+N = int(input().strip())
+A_list = list(map(int, input().split()))
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res = 0
+dq = deque()
+for a in A_list:
+    dq.append(a)
+    while len(dq) >= 3 and (dq[-1]+dq[-3]) != 2*dq[-2]:
+        dq.popleft()
+
+    res += len(dq)
+
+print(res)

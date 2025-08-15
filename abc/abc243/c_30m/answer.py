@@ -1,34 +1,3 @@
-import sys, math, itertools, bisect, functools, copy, decimal
-# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
-from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
-from sortedcontainers import SortedSet, SortedList, SortedDict
-from collections import defaultdict, Counter, deque
-from atcoder.dsu import DSU
-sys.setrecursionlimit(10**7)
-
 N = int(input())
 A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
 S = input().strip()
-
-res_dict = defaultdict(dict)
-for i, A_list in enumerate(A_lists):
-    x, y = A_list
-    s = S[i]
-    if y not in res_dict:
-        res_dict[y].update({s: x})
-    else:
-        if s not in res_dict[y]:
-            res_dict[y].update({s: x})
-        else:
-            if s == "R":
-                res_dict[y].update({s: min(res_dict[y]["R"], x)})
-            else:
-                res_dict[y].update({s: max(res_dict[y]["L"], x)})
-
-for k, v in res_dict.items():
-    if len(v) == 2:
-        if v["R"] <= v["L"]:
-            print("Yes")
-            exit()
-
-print("No")

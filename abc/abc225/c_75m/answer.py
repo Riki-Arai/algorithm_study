@@ -1,16 +1,14 @@
 N, M = map(int, input().split())
 A_lists = [list(map(int, input().split())) for _ in range(N)]
 
-base_idx = ((A_lists[0][0]-1)//7, (A_lists[0][0]-1)%7)
+m, r = divmod(A_lists[0][0], 7)
 for i in range(N):
-    i_idx = base_idx[0] + i
     for j in range(M):
-        j_idx = base_idx[1] + j
-        if i_idx*7 + j_idx != A_lists[i][j]-1:
+        if ((m+i)*7 + j+r) != A_lists[i][j]:
             print("No")
             exit()
 
-        if not(i_idx*7 <= i_idx*7 + j_idx <= i_idx*7+6):
+        if not 0 <= (A_lists[i][j]-1)//7 < 10**100:
             print("No")
             exit()
 

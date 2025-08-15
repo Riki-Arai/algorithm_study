@@ -11,9 +11,10 @@ N = int(input())
 A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
 
 res = 0
-A_list.sort()
+c_dict = Counter(A_list)
 for a in A_list:
-    i = bisect.bisect_right(A_list, a)
-    res += N-i
+    res += N - c_dict[a]
+    c_dict[a] -= 1
+    N -= 1
 
 print(res)

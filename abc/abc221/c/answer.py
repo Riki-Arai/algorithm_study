@@ -4,21 +4,3 @@ from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOW
 from collections import defaultdict, Counter, deque
 
 N = int(input())
-
-res = 0
-str_n = str(N)
-p_lists = list(itertools.product([0, 1], repeat=len(str(N))))
-for p_list in p_lists:
-    a_list, b_list = [], []
-    for i, p in enumerate(p_list):
-        if p == 1:
-            a_list.append(str_n[i])
-        else:
-            b_list.append(str_n[i])
-
-    a_list.sort(reverse=True)
-    b_list.sort(reverse=True)
-    if len(a_list) > 0 and len(b_list) > 0 and not(a_list[0] == 0 or b_list[0] == 0):
-        res = max(int("".join(a_list)) * int("".join(b_list)), res)
-
-print(res)

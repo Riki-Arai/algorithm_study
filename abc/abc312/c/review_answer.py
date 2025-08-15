@@ -17,6 +17,8 @@ N, M = map(int, input().split())
 A_list = list(map(int, input().split()))
 B_list = list(map(int, input().split()))
 
+# highは常にTrue、lowは常にFalseになるように決める必要がある
+# lowを1、highを10**9-1とした場合だとWAになることを確認済み
 low, high = 0, 10**9+1
 while high - low > 1:
     mid = (low + high) // 2

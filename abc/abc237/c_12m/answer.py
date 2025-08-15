@@ -10,27 +10,26 @@ S = input().strip()
 
 if S == S[::-1]:
     print("Yes")
+    exit()
 else:
-    g_lists = []
-    for k, v in itertools.groupby(S):
-        g_lists.append((k, len(list(v))))
-    if g_lists[-1][0] == "a":
-        a_num = g_lists[-1][1]
-        if g_lists[0][0] == "a":
-            h_a_num = g_lists[0][1]
-            if h_a_num < a_num:
-                add_s = "a"*(a_num-h_a_num) + S
-                if add_s == add_s[::-1]:
-                    print("Yes")
-                else:
-                    print("No")
-            else:
-                print("No")
+    l = 0
+    for i in range(len(S)):
+        if S[i] == "a":
+            l += 1
         else:
-            add_s = "a"*a_num + S
-            if add_s == add_s[::-1]:
-                print("Yes")
-            else:
-                print("No")
-    else:
-        print("No")
+            break
+    r = 0
+    r_s = S[::-1]
+    for i in range(len(S)):
+        if r_s[i] == "a":
+            r += 1
+        else:
+            break
+
+    if r > l:
+        new_s = "a"*(r-l) + S
+        if new_s == new_s[::-1]:
+            print("Yes")
+            exit()
+
+print("No")

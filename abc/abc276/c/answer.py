@@ -1,20 +1,17 @@
+# 辞書順は典型問題であり、末尾から考えていくと良い
+# 辞書順は小さい順が基本なので、末尾から見て降順が崩れているところが順序変更の基点となる
 N = int(input().strip())
 P_list = list(map(int, input().split()))
 
-idx_n = dict()
-P_list = P_list[::-1]
-for i in range(N-1):
-    idx_n[i] = P_list[i]
-    if P_list[i] <= P_list[i+1]:
-        tmp_p_list = P_list[:i+1].copy()
-        next_n = P_list[i+1]
-        tmp_p_list.remove(next_n-1)
-        tmp_p_list.append(next_n)
-        tmp_p_list.sort(reverse=True)
-        if i+2 < N -1:
-            res_list = P_list[i+2:][::-1]
-        else:
-            res_list = P_list[i+1:][::-1]
-        res_list.append(next_n-1)
-        print(*res_list + tmp_p_list)
-        exit()
+for i in range(N - 2, -1, -1):
+    # まずは降順が崩れている箇所を特定
+    if P_list[i] > P_list[i + 1]:
+        j = N - 1
+        # 降順が崩れている箇所(i)よりも右側のもので入れ替わる対象を探索
+        while P_list[i] < P_list[j]:
+            j -= 1
+        P_list[i], P_list[j] = P_list[j], P_list[i]
+        P_list[i + 1:] = reversed(P_list[i + 1:])
+        break
+
+print(*P_list)

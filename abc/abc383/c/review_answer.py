@@ -16,6 +16,7 @@ for i in range(H):
 
 move_dict = {"L":(-1, 0), "U":(0, -1), "R":(1, 0), "D":(0, 1)}
 res = 0
+# 今回の一番の肝で、このメモを使用せずにマンハッタン距離を使用しようとすると壁を超えた距離を導出してしまうのでおかしくなってしまう
 dis_lists = [[-1]*W for _ in range(H)]
 dq = deque()
 for h, w in h_lists:

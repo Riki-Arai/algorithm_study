@@ -23,6 +23,9 @@ def dfs(i):
     for a in A_lists[i][2:]:
         if a not in skill_set:
             dfs(a-1)
+    # 以下のような形でやってしまうと毎回スライスしたリストを作るために処理が重くなってしまってTLEになるので注意
+    #for j in range(len(A_lists[i-1][2:])):
+    #    dfs(A_lists[i-1][2:][j])
 
     res += A_lists[i][0]
     skill_set.add(i+1)

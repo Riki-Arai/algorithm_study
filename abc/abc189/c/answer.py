@@ -1,26 +1,11 @@
+import sys, math, itertools, bisect, functools, copy, decimal
+from functools import cmp_to_key
+# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
+from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
+from sortedcontainers import SortedSet, SortedList, SortedDict
+from collections import defaultdict, Counter, deque
+from atcoder.dsu import DSU
+sys.setrecursionlimit(10**7)
+
 N = int(input()) # 数値
-S = input().strip() # 文字列
-T = input().strip() # 文字列
-S_list = list(input())
-A, B = input().split()
-S, T = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-N, K = map(int, input().split())
-N, Q = map(int, input().split())
-S, T = map(int, input().split())
 A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["a","b","c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
-
-import sys
-
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)

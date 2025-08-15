@@ -1,23 +1,23 @@
-def num_move(n, from_, to, ng):
-    if from_ > to:
-        from_, to = to, from_
-    if from_ < ng < to:
-        return n + from_ - to
-    else:
-        return to - from_
+N, Q = map(int, input().split())
+A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(Q))]
 
-n, q = map(int, input().split())
-l, r = 1, 2
-ans = 0
-
-for _ in range(q):
-    h, t = input().split()
-    t = int(t)
-    if h == 'L':
-        ans += num_move(n, l, t, r)
-        l = t
+def f(s, g, w):
+    if s > g:
+        g, s = s, g
+    if s < w < g:
+        return N-g+s
     else:
-        ans += num_move(n, r, t, l)
+        return g - s
+
+res = 0
+l = 1
+r = 2
+for h, t in A_lists:
+    if h == "R":
+        res += f(r, t, l)
         r = t
+    else:
+        res += f(l, t, r)
+        l = t
 
-print(ans)
+print(res)

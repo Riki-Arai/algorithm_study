@@ -17,3 +17,23 @@ else:
     else:
         # それ以外 → |z| + |x - z| を出力
         print(abs(z) + abs(x - z))
+
+
+# 別解
+#X, Y, Z = map(int, input().split())
+#
+#if Y < 0:
+#    X *= -1
+#    Y *= -1
+#    Z *= -1
+#
+#if X < Y:
+#    print(abs(X))
+#else:
+#    if Y < Z:
+#        print(-1)
+#    else:
+#        if 0 < Z:
+#            print(abs(X))
+#        else:
+#            print(abs(X) + 2*abs(Z))

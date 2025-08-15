@@ -1,16 +1,31 @@
-# 同じ文字列と入れ替える時は変化がなく、違う文字列だと変化があるのがポイント
-from collections import defaultdict
-S=input()
-N=len(S)
+# 一度利用したインデックスは-1してあげる
+import sys, math, itertools, bisect, functools, copy, decimal
+from functools import cmp_to_key
+# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
+from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
+from sortedcontainers import SortedSet, SortedList, SortedDict
+from collections import defaultdict, Counter, deque
+from atcoder.dsu import DSU
+sys.setrecursionlimit(10**7)
 
-ans=0
-res_dict=defaultdict(int)
-for j in range(N):
-  ans+=j-res_dict[S[j]]  # i として選べるのは、j までの文字のうち S[j] と同じでないもの
-  res_dict[S[j]]+=1
-if max(res_dict.values())>1: # 重複して出現した文字列があるときは入れ替え時に同じ文字列になるパターンが存在する
-  ans+=1 # その場合は入れ替えてもSとなるが、それも1種類としてカウント
-print(ans)
+S = input().strip()
+
+alp_dict = defaultdict(int)
+for i, s in enumerate(S):
+    alp_dict[s] += 1
+
+res = 0
+if max(alp_dict.values()) >= 2:
+    res += 1
+
+for i, s in enumerate(S):
+    for k, v in alp_dict.items():
+        if k != s:
+            res += v
+    if alp_dict[s] - 1 >= 0:
+        alp_dict[s] -= 1
+
+print(res)
 
 
 ## 以下は自分の回答

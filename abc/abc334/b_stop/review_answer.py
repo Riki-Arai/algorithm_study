@@ -1,7 +1,13 @@
+# 解答は一例しか示していないっぽく、実際には場合分けが必要だった
 A, M, L, R = map(int, input().split())
 
-#L -= A
-#R -= A
-#L += 2 * 10**18
-#R += 2 * 10**18
-print(R//M - (L-1)//M) # 特定の範囲内に倍数が何個含むかといった時に使用する計算
+L -= A
+R -= A
+if L > 0:
+    print(abs(R//M-(L-1)//M))
+elif L < 0:
+    R *= -1
+    L *= -1
+    print(abs(L//M-(R-1)//M))
+else:
+    print(abs(L//M)+abs(R//M))

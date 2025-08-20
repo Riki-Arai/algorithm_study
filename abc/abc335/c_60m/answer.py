@@ -52,5 +52,4 @@ class Deque:
     def __str__(self):
         return 'Deque({0})'.format(str(list(self)))
 
-
 N, Q = map(int, input().split())

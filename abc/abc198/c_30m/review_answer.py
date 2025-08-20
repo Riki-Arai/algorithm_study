@@ -7,25 +7,13 @@ from collections import defaultdict, Counter, deque
 from atcoder.dsu import DSU
 sys.setrecursionlimit(10**7)
 
-N, K = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
+R, X, Y = map(int, input().split())
 
-dq = deque()
-res_dict = defaultdict(int)
-for i in range(K):
-    res_dict[A_list[i]] += 1
-    dq.append(A_list[i])
-
-res = len(res_dict.keys())
-for i in range(K, N):
-    dq.append(A_list[i])
-    res_dict[A_list[i]] += 1
-    pop_a = dq.popleft()
-    if res_dict[pop_a] - 1 == 0:
-        del res_dict[pop_a]
-        res = max(len(res_dict.keys()), res)
-    else:
-        res_dict[pop_a] -= 1
-        res = max(len(res_dict.keys()), res)
-
-print(res)
+g_dis = math.sqrt(pow(X, 2) + pow(Y, 2))
+r_dis = math.sqrt(R*R)
+if g_dis % r_dis == 0:
+    print(int(g_dis//r_dis))
+elif g_dis-2*r_dis < 0:
+    print(2)
+else:
+    print(int(2 + ((g_dis-2*r_dis)//r_dis) + 1))

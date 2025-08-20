@@ -1,28 +1,30 @@
 X, A, D, N = map(int, input().split())
 
-# dが負なら数列が単調増加になるように調整
+# 後の二分探索の初期設定で矛盾が起きないようにDを必ず0以上にする（Aも常に左端にする）
 if D < 0:
     A = A + D*(N-1)
-    D = -D
+    D *= -1
 
-ng = -1
-ok = N
-while ok - ng > 1:
-    mid = (ok + ng) // 2
-    if A + D*mid >= X:
-        ok = mid
-    else:
-        ng = mid
+s = A
+g = A + D*(N-1)
+if X < s:
+    print(abs(s-X))
+elif X > g:
+    print(abs(X-g))
+else:
+    def is_ok(n):
+        return A+D*n >= X
 
-# ok が「a + d*ok >= x となる最小のインデックス」になる
-# 周囲のインデックスを確認して最小距離を求める
-res = float("INF")
-if 0 <= ok < N:
-    res = min(res, abs((A + D*ok) - X))
-if 0 <= ok - 1 < N:
-    res = min(res, abs((A + D*(ok - 1)) - X))
+    ok, ng = 10**18+1, -10**18-1  # 基本的にokはis_okの条件を必ずTrue、ngは必ずFalseで設定。ただし探索条件の中で最適を探りたい時は必ずTrue、Falseである必要はないケースもある。
+    while abs(ok - ng) > 1:  # 絶対値を使用しているのでok と ng の大小に関係なく、同じ条件式で良い。
+        mid = (ok + ng) // 2
+        # ok と ng の大小に関わらず変更なし。(参考：https://zenn.dev/forcia_tech/articles/20191223_advent_calendar)
+        if is_ok(mid):
+            ok = mid
+        else:
+            ng = mid
 
-print(res)
+    print(min(abs(X-(A+D*ok)), abs(X-(A+D*(ok-1)))))
 
 # first
 #x, a, d, n = map(int, input().split())

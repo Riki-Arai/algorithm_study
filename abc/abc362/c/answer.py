@@ -6,7 +6,9 @@ for _ in range(N):
     l_list.append(L)
     r_list.append(R)
 
-if sum(l_list) > 0 or sum(r_list) < 0:
+# 最初はコメントアウトの条件にしていたが、notの方が直感的に理解しやすい
+# if sum_l > 0 or sum_r < 0:
+if not (sum(l_list) <= 0 <= sum(r_list)):
     print("No")
     exit()
 

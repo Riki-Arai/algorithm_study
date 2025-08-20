@@ -14,13 +14,3 @@ g_dict = defaultdict(set)
 for c, d in C_lists:
     g_dict[c].add(d)
     g_dict[d].add(c)
-
-for p in itertools.permutations(range(1, N+1)):
-    for a, b in A_lists:
-        if p[b-1] not in g_dict[p[a-1]] and p[a-1] not in g_dict[p[b-1]]:
-            break
-    else:
-        print("Yes")
-        exit()
-
-print("No")

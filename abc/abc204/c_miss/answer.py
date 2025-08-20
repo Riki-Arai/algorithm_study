@@ -13,3 +13,29 @@ A_lists = [list(map(int, input().split())) for _ in range(M)] # 取得例:[[1,2]
 g_dict = defaultdict(set)
 for a, b in A_lists:
     g_dict[a].add(b)
+
+def dfs(c, g):
+    global res, res_flag
+    if c == g:
+        res_flag = True
+        return
+    if c in seen_set:
+        return
+
+    seen_set.add(c)
+    if c in g_dict:
+        for n in g_dict[c]:
+            dfs(n, g)
+            if res_flag:
+                break
+
+res_set = set()
+for i in range(1, N+1):
+    for j in range(1, N+1):
+        res_flag = False
+        seen_set = set()
+        dfs(i, j)
+        if res_flag:
+            res_set.add((i, j))
+
+print(len(res_set))

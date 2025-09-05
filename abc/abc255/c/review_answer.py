@@ -1,21 +1,23 @@
 X, A, D, N = map(int, input().split())
 
-# 後の二分探索の初期設定で矛盾が起きないようにDを必ず0以上にする（Aも常に左端にする）
 if D < 0:
-    A = A + D*(N-1)
+    s = A
+    g = A + D*(N-1)
+    s, g = g, s
     D *= -1
+else:
+    s = A
+    g = A + D*(N-1)
 
-s = A
-g = A + D*(N-1)
-if X < s:
-    print(abs(s-X))
-elif X > g:
+if g <= X:
     print(abs(X-g))
+elif X <= s:
+    print(abs(s-X))
 else:
     def is_ok(n):
-        return A+D*n >= X
+        return s+n*D > X
 
-    ok, ng = 10**18+1, -10**18-1  # 基本的にokはis_okの条件を必ずTrue、ngは必ずFalseで設定。ただし探索条件の中で最適を探りたい時は必ずTrue、Falseである必要はないケースもある。
+    ok, ng = N, 0  # 最大値を導出する場合は左側で確実にTrueとなる初期値を選択する。ただし例えばngの値を大きくしすぎると最大値が問題の閾値外になってしまうことがあるので注意。
     while abs(ok - ng) > 1:  # 絶対値を使用しているのでok と ng の大小に関係なく、同じ条件式で良い。
         mid = (ok + ng) // 2
         # ok と ng の大小に関わらず変更なし。(参考：https://zenn.dev/forcia_tech/articles/20191223_advent_calendar)
@@ -23,8 +25,7 @@ else:
             ok = mid
         else:
             ng = mid
-
-    print(min(abs(X-(A+D*ok)), abs(X-(A+D*(ok-1)))))
+    print(min(abs(X-(s+ok*D)), abs(X-(s+(ok-1)*D))))
 
 # first
 #x, a, d, n = map(int, input().split())

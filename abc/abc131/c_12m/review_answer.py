@@ -7,9 +7,13 @@ from collections import defaultdict, Counter, deque
 from atcoder.dsu import DSU
 sys.setrecursionlimit(10**7)
 
-N, M = map(int, input().split())
-A_lists = [list(map(int, input().split())) for _ in range(M)] # 取得例:[[1,2], [3,4]・・[9,10]]
+A, B, C, D = map(int, input().split()) # 取得例：1 2
 
-g_dict = defaultdict(set)
-for a, b in A_lists:
-    g_dict[a].add(b)
+def lcm(a: int, b: int) -> int:
+    return abs(a*b) // math.gcd(a, b)
+
+E = lcm(C, D)
+x = (B//C)-((A-1)//C)
+y = (B//D)-((A-1)//D)
+z = ((B//E)-((A-1)//E))
+print((B-A+1)-(x+y-z))

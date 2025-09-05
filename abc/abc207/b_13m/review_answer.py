@@ -1,10 +1,12 @@
 A, B, C, D = map(int, input().split())
 
-ans = -1
-diff = C*D-B
-if 0 < diff:
-    ans = (A+diff-1)//diff
-print(ans)
+if C*D <= B:
+    print(-1)
+else:
+    res = 0
+    while A+B*res > D*C*res:
+        res += 1
+    print(res)
 
 
 ### first

@@ -1,1 +1,1 @@
-N = int(input()) # 数値
+N = int(input()) # 数値お

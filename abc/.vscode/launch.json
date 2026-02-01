@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "test1 debug",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${fileDirname}/answer.py",
             "console": "integratedTerminal",
@@ -12,7 +12,7 @@
         },
         {
             "name": "test2 debug",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${fileDirname}/answer.py",
             "console": "integratedTerminal",
@@ -21,7 +21,7 @@
         },
         {
             "name": "test3 debug",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${fileDirname}/answer.py",
             "console": "integratedTerminal",
@@ -30,7 +30,7 @@
         },
         {
             "name": "test4 debug",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${fileDirname}/answer.py",
             "console": "integratedTerminal",
@@ -39,7 +39,7 @@
         },
         {
             "name": "test5 debug",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${fileDirname}/answer.py",
             "console": "integratedTerminal",

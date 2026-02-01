@@ -2,6 +2,7 @@ N, M = map(int, input().split())
 A_lists = [list(map(int, input().split())) for _ in range(N)]
 
 n = A_lists[0][0]
+# 0-baseに変換しようとするとx−1=(i−1)×7+(j−1)になるので、以下の式で0-baseのiとjを決定できる
 i, j = divmod(n-1, 7)
 for k in range(N):
     ii = i + k
@@ -17,19 +18,19 @@ for k in range(N):
 
 print("Yes")
 
+## 以下のケースはWA
+## 行が増えた時に同じ列において+7、列が+1ずつ増えていく条件を満たせばYesにしてしまい、改行に関して検知を行えていない
+## なので改行しているかどうかも正しく検知したいケースはインデックスを活用して比較するべき
 #N, M = map(int, input().split())
 #A_lists = [list(map(int, input().split())) for _ in range(N)]
 #
-#base_idx = ((A_lists[0][0]-1)//7, (A_lists[0][0]-1)%7)
+#base_i, base_j = divmod(A_lists[0][0]-1, 7)
 #for i in range(N):
-#    i_idx = base_idx[0] + i
 #    for j in range(M):
-#        j_idx = base_idx[1] + j
-#        if i_idx*7 + j_idx != A_lists[i][j]-1:
-#            print("No")
-#            exit()
-#
-#        if not(i_idx*7 <= i_idx*7 + j_idx <= i_idx*7+6):
+#        ii = i + base_i
+#        jj = j + base_j
+#        # 7 8 9 10といった改行しないパターンに対してNoだと判定できない
+#        if 7*ii + jj + 1 != A_lists[i][j]:
 #            print("No")
 #            exit()
 #

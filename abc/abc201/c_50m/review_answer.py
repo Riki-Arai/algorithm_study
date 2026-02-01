@@ -1,3 +1,26 @@
+S = input().strip()
+
+res = 0
+for i in range(10000):
+    p_list = list("0000")
+    c = 0
+    while i > 0:
+        p_list[c] = str(i%10)
+        i //= 10
+        c += 1
+
+    p_set = set(p_list)
+    for i, s in enumerate(S):
+        if s == "o" and str(i) not in p_set:
+            break
+        elif s == "x" and str(i) in p_set:
+            break
+    else:
+        res += 1
+
+print(res)
+
+
 # 解けはしたが、公式回答の方スマートで汎用性もあるのでそちらの解き方をぜひ覚えておく
 # パターンの列挙が間に合うのでその方針の方が楽
 S = input().strip()

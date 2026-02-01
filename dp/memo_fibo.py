@@ -1,12 +1,19 @@
-fib_dic = {}
-def fib(i):
-    if i in fib_dic:
-        return fib_dic[i]
-    if i == 0: 
-        return 0
-    elif i == 1:
-        return 1
-    fib_dic[i] = fib(i-1) + fib(i-2)
-    return fib_dic[i]
+import sys
+sys.setrecursionlimit(10**7)
 
-print(fib(10))
+N = int(input().strip())
+
+memo_dict = dict()
+def f(n):
+    if n in memo_dict:
+        return memo_dict[n]
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 1
+
+    res = f(n-2)%1000000007+f(n-1)%1000000007
+    memo_dict[n] = res
+    return res
+
+print(f(N))

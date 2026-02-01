@@ -1,0 +1,1 @@
+X = input().strip() # 取得例："A"

@@ -1,2 +1,4 @@
-N = int(input())
-S_list = [input() for _ in range(N)]
+from collections import Counter
+
+N = int(input().strip())
+S_list = [input().strip() for _ in range(N)]

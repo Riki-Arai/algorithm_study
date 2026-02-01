@@ -1,13 +1,13 @@
 N, X = map(int, input().split())
-A = list(map(int, input().split()))
+A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
 
-S = set(A)
-for val in A:
-    if (val - X) in S:
+a_set = set(A_list)
+for a in A_list:
+    if a+X in a_set:
         print("Yes")
-        break
-else:
-    print("No")
+        exit()
+
+print("No")
 
 ## これは数分以内に解くべき問題
 ## bisectの仕様を正しく把握できていないところがあったことも原因だったので見直しておいた

@@ -1,1 +1,1 @@
-Q = int(input())
+Q = int(input().strip())

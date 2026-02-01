@@ -1,7 +1,22 @@
 N = int(input())
 
-grid = [["#"]*(3**N) for _ in range(3**N)]
+m = 3**N
+g_lists = [["#"]*3**N for _ in range(3**N)]
+for k in range(N):
+    for i in range(3**N):
+        for j in range(3**N):
+            ii = i//(3**k)
+            jj = j//(3**k)
+            if ii%3 == 1 and jj%3 == 1:
+                g_lists[i][j] = "."
 
+
+for g_list in g_lists:
+    print("".join(g_list))
+
+N = int(input())
+
+grid = [["#"]*(3**N) for _ in range(3**N)]
 for k in range(N):
     for i in range(3**N):
         for j in range(3**N):

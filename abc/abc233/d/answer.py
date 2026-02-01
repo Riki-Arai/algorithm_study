@@ -1,18 +1,16 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+from collections import defaultdict
 
-import sys
+N, K = map(int, input().split())
+A_list = list(map(int, input().split()))
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+cum_list = [0]
+for a in A_list:
+    cum_list.append(cum_list[-1]+a)
+
+res = 0
+res_dict = defaultdict(int)
+for r in range(1, len(cum_list)):
+    res_dict[cum_list[r-1]] += 1
+    res += res_dict[cum_list[r]-K]
+
+print(res)

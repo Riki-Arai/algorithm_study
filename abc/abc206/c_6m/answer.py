@@ -10,11 +10,9 @@ sys.setrecursionlimit(10**7)
 N = int(input())
 A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
 
-res = 0
+res = N*(N-1)//2
 c_dict = Counter(A_list)
-for a in A_list:
-    res += N - c_dict[a]
-    c_dict[a] -= 1
-    N -= 1
+for v in c_dict.values():
+    res -= v*(v-1)//2
 
 print(res)

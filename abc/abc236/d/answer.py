@@ -1,19 +1,11 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
-
 import sys
+sys.setrecursionlimit(10**7)
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+N = int(input())
+A_lists = [list(map(int, input().split())) for _ in range(2*N-1)]
+
+g_lists = [[0]*2*N for _ in range(2*N)]
+for i, A_list in enumerate(A_lists):
+    for j, a in enumerate(A_list, i+1):
+        g_lists[i][j] = a
+        g_lists[j][i] = a

@@ -1,30 +1,32 @@
+import sys, math, itertools as it, bisect as bi, functools as ft, copy, decimal, heapq as hq
+from more_itertools import distinct_permutations
+from functools import cmp_to_key
+# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
+from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
+from sortedcontainers import SortedSet, SortedList, SortedDict
+from collections import defaultdict, Counter, deque
+from atcoder.dsu import DSU
+sys.setrecursionlimit(10**7)
+
 N, M = map(int, input().split())
 S = input().strip()
 C_list = list(map(int, input().split()))
 
-# 文字列を可変リストとして扱う（Pythonの文字列は変更不可のため）
-ans = list(S)
+tmp_dict = defaultdict(deque)
+for i in range(N):
+    tmp_dict[int(C_list[i])].append(S[i])
 
-# グループごとに所属インデックスをまとめるリスト
-groups = [[] for _ in range(M)]
-for i, c in enumerate(C_list):
-    # c は 1～M の範囲なので、c-1 をインデックスに
-    groups[c - 1].append(i)
+res_dict = defaultdict(deque)
+for k, v in tmp_dict.items():
+    first_v = v.pop()
+    v.appendleft(first_v)
+    res_dict[k] = v
 
-# 各グループで「1つ右へシフト」する形で文字を入れ替える
-for g in groups:
-    length = len(g)
-    # 要素が1つ以下ならシフト不要
-    if length <= 1:
-        continue
+res_list = []
+for i in range(N):
+    res_list.append(res_dict[C_list[i]].popleft())
 
-    # 古い文字を一時的に退避しておき、1つ先の位置にコピー
-    old_chars = [ans[idx] for idx in g]
-    for j in range(length):
-        ans[g[(j + 1) % length]] = old_chars[j]
-
-# 最終的に文字列に戻して出力
-print("".join(ans))
+print("".join(res_list))
 
 # 以下は2回目に解答したもの（模範解答よりもコードが短い）
 #N, M = map(int, input().split())

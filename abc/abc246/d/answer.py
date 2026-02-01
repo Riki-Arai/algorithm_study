@@ -1,19 +1,14 @@
 N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
 
-import sys
+if N == 0:
+    print(0)
+    exit()
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res = float("INF")
+for a in range(1, 10**6+1):
+    for b in range((10**6)//(a*a)+1):
+        tmp_res = pow(a+b, 3) - 2*(a**2*b) - 2*(a*b**2)
+        if tmp_res >= N:
+            res = min(tmp_res, res)
+
+print(res)

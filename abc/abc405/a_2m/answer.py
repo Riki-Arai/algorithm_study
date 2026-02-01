@@ -1,0 +1,12 @@
+R, X = map(int, input().split()) # 取得例：1 2
+
+if X == 1:
+    if 1600 <= R <= 2999:
+        print("Yes")
+    else:
+        print("No")
+else:
+    if 1200 <= R <= 2399:
+        print("Yes")
+    else:
+        print("No")

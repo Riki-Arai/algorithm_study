@@ -8,4 +8,3 @@ from atcoder.dsu import DSU
 sys.setrecursionlimit(10**7)
 
 N, M = map(int, input().split())
-

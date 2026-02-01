@@ -1,21 +1,31 @@
-N = int(input())
-A, B = input().split()
-S, T = input().split()
-A, B = map(int, input().split())
+from collections import deque
+
 N, M = map(int, input().split())
-S, T = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A",1], ["B",2]・・["F",6]]
-S = input().strip()
-S_list = list(input())
+g_lists = [[] for _ in range(N+1)]
 
-import sys
+for _ in range(M):
+    A, B = map(int, input().split())
+    g_lists[A].append(B)
+    g_lists[B].append(A)
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res = 0
+way_list = [-1]*(N+1)
+seen_set = set()
+dq = deque()
+dq.append(1)
+way_list[1] = 1
+seen_set.add(1)
+while len(dq):
+    a = dq.popleft()
+    for b in g_lists[a]:
+        if b not in seen_set:
+            way_list[b] = (way_list[a])%(10**9+7)
+            dq.append(b)
+            seen_set.add(b)
+        else:
+            way_list[b] = (way_list[b] + way_list[a])%(10**9+7)
+
+if way_list[N] != -1:
+    print(way_list[N]%(10**9+7))
+else:
+    print(0)

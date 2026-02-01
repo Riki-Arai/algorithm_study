@@ -1,16 +1,14 @@
-def part_sum(A, N, W):
-    if N == 0: 
-        if W == 0:
-            return True
-        else:
-            return False
+N, S = list(map(int, input().split()))
+A_list = list(map(int, input().split()))
 
-    if part_sum(A, N-1, W-A[N-1]):
-        return "Yes"
+dp_list = [False]*(S+1)
+dp_list[0] = True
+for a in A_list:
+    for i in range(S, a-1, -1):
+        if dp_list[i-a]:
+            dp_list[i] = True
 
-    if part_sum(A, N-1, W):
-        return "Yes"
-            
-    return "No"
-
-print(part_sum([3, 2, 6, 5], 4, 14))
+if dp_list[S]:
+    print("Yes")
+else:
+    print("No")

@@ -1,17 +1,23 @@
+from collections import defaultdict, Counter, deque
+
 N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
 
-import sys
+X_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
+X_lists.sort()
+n_dict = defaultdict(int)
+for s, c in X_lists:
+    n_dict[s] = c
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res = 0
+while len(n_dict):
+    k = list(n_dict.keys())[0]
+    if n_dict[k] >= 2:
+        if n_dict[k]%2 == 1:
+            res += 1
+        n_dict[2*k] += n_dict[k]//2
+        del n_dict[k]
+    else:
+        res += 1
+        del n_dict[k]
+
+print(res)

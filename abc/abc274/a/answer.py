@@ -9,4 +9,5 @@ decimal.getcontext().prec = 28 # 有効桁数
 def remove_exponent(d):
     return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()
 res = remove_exponent(Decimal(B/A).quantize(Decimal(f'0.001'), ROUND_HALF_UP))
+
 print(f"{res:.3f}")

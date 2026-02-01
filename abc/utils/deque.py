@@ -1,7 +1,7 @@
 # https://prd-xxx.hateblo.jp/entry/2020/02/07/114818(リファレンス)
 class Deque:
     ##### max_sizeの値に注意！！！
-    def __init__(self, src_arr=[], max_size=300000):
+    def __init__(self, src_arr=[], max_size=2*10**6+1):
         self.N = max(max_size, len(src_arr)) + 1
         self.buf = list(src_arr) + [None] * (self.N - len(src_arr))
         self.head = 0

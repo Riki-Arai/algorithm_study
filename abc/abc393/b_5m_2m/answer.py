@@ -8,4 +8,4 @@ for i in range(N):
             if i < j < k and abs(j-i) == abs(k-j) and S[i] == "A" and S[j] == "B" and S[k] == "C":
                 res += 1
 
-print(res)  
+print(res)

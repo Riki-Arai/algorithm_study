@@ -1,33 +1,33 @@
-# リスト内に答えが存在するわけではない点に注意し、二分探索を行う
-# can_sell_buy内でリストの探索をしているが、探索回数が多くないので計算量はそこまで負担にはならない
-# 今思うと買い手と売り手の数列をどうマージすれば良いかわからなかったことがACできなかった原因かも
-# →マージした探索をしたい時もめぐる式を検討すると良いかも
-
-def can_sell_buy(x, A, B):
-    """
-    条件を判定する関数:
-    x円なら売ってもいい売り手の人数 >= x円で買ってもいい買い手の人数
-    を満たすかどうかを True/False で返す。
-    """
-    na = sum(1 for a_i in A if a_i <= x)  # x円以下で売れる売り手
-    nb = sum(1 for b_i in B if b_i >= x)  # x円以上で買える買い手
-    return na >= nb
-
+# 二分探索自体は9回しかないので、is_okの全探索を2回行っても十分に間に合う
+# nが低い時は常にFalseであるが、途中からは売りたい人が増えて買いたい人は減るので単調性が成立することから、二分探索が使える（昔はこれが理解できていなかった）
 N, M = map(int, input().split())
 A_list = list(map(int, input().split()))
 B_list = list(map(int, input().split()))
 
-# highは常にTrue、lowは常にFalseになるように決める必要がある
-# lowを1、highを10**9-1とした場合だとWAになることを確認済み
-low, high = 0, 10**9+1
-while high - low > 1:
-    mid = (low + high) // 2
-    if can_sell_buy(mid, A_list, B_list):
-        high = mid
+def is_ok(n):
+    sale_num = 0
+    for a in A_list:
+        if n >= a:
+            sale_num += 1
+    buy_num = 0
+    for b in B_list:
+        if n <= b:
+            buy_num += 1
+    if sale_num >= buy_num:
+        return True
     else:
-        low = mid
+        return False
 
-print(high)
+ok, ng = 10**9+1, 0  # 最大値を導出する場合は左側で確実にTrueとなる初期値を選択する。ただし例えばngの値を大きくしすぎると最大値が問題の閾値外になってしまうことがあるので注意。
+while abs(ok - ng) > 1:  # 絶対値を使用しているのでok と ng の大小に関係なく、同じ条件式で良い。
+    mid = (ok + ng) // 2
+    # ok と ng の大小に関わらず変更なし。(参考：https://zenn.dev/forcia_tech/articles/20191223_advent_calendar)
+    if is_ok(mid):
+        ok = mid
+    else:
+        ng = mid
+
+print(ok)
 
 
 # first（WAなので注意）

@@ -1,20 +1,41 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+from collections import deque
 
-import sys
+H, W = map(int, input().split())
+S = [input() for _ in range(H)]
+A, B, C, D = map(int, input().split())
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+A -= 1
+B -= 1
+C -= 1
+D -= 1
+INF = 10**18
+dist = [[INF] * W for _ in range(H)]
+dist[A][B] = 0
+dq = deque()
+dq.append((A, B))
+directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+while dq:
+    i, j = dq.popleft()
+
+    # コスト0: 隣の通路へ普通に移動
+    for di, dj in directions:
+        ni = i + di
+        nj = j + dj
+
+        if 0 <= ni < H and 0 <= nj < W:
+            if S[ni][nj] == "." and dist[ni][nj] > dist[i][j]:
+                dist[ni][nj] = dist[i][j]
+                dq.appendleft((ni, nj))
+
+    # コスト1: パンチして1マス先・2マス先へ行けるようにする
+    for di, dj in directions:
+        for k in range(1, 3):
+            ni = i + di * k
+            nj = j + dj * k
+
+            if 0 <= ni < H and 0 <= nj < W:
+                if dist[ni][nj] > dist[i][j] + 1:
+                    dist[ni][nj] = dist[i][j] + 1
+                    dq.append((ni, nj))
+
+print(dist[C][D])

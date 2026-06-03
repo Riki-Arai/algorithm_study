@@ -1,1 +1,1 @@
-grid_lists = [list(input().strip()) for _ in range(9)]
+S = [input().strip() for _ in range(9)]

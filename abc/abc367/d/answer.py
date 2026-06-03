@@ -1,17 +1,7 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
 
-import sys
-
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+# s[i] = a[0] + ... + a[i-1] を m で割った余り
+s = [0] * (n + 1)
+for i in range(n):
+    s[i + 1] = (s[i] + a[i]) % m

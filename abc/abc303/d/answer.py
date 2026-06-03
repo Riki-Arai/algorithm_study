@@ -1,18 +1,20 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
+X, Y, Z = map(int, input().split())
 S = input().strip()
-S_list = list(input())
 
-import sys
+dp_lists = [[float("INF"), float("INF")] for _ in range(len(S))]
+if S[0] == "a":
+    dp_lists[0][0] = X
+    dp_lists[0][1] = Z + Y
+else:
+    dp_lists[0][0] = Y
+    dp_lists[0][1] = Z + X
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+for i, s in enumerate(S[1:], 1):
+    if s == "a":
+        dp_lists[i][0] = min(dp_lists[i-1][0]+X, dp_lists[i-1][1]+Z+X)
+        dp_lists[i][1] = min(dp_lists[i-1][1]+Y, dp_lists[i-1][0]+Z+Y)
+    else:
+        dp_lists[i][0] = min(dp_lists[i-1][0]+Y, dp_lists[i-1][1]+Z+Y)
+        dp_lists[i][1] = min(dp_lists[i-1][1]+X, dp_lists[i-1][0]+Z+X)
+
+print(min(dp_lists[len(S)-1]))

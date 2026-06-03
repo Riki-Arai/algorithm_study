@@ -1,20 +1,29 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+import copy
+from collections import deque
 
-import sys
+H, W = map(int, input().split()) # 取得例：1 2
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+g_lists = [list(input()) for _ in range(H)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
+
+dq = deque()
+seen_sets = set()
+for i in range(H):
+    for j in range(W):
+        if g_lists[i][j] == "E":
+            dq.append((i, j))
+            seen_sets.add((i, j))
+
+move_dicts = {"v":(-1, 0), ">":(0, -1), "^":(1, 0), "<":(0, 1)}
+res_lists = copy.deepcopy(g_lists)
+while len(dq):
+    i, j = dq.popleft()
+    for dir, x in move_dicts.items():
+        ii = i + x[0]
+        jj = j + x[1]
+        if 0 <= ii < H and 0 <= jj < W and g_lists[ii][jj] == "." and (ii, jj) not in seen_sets:
+            res_lists[ii][jj] = dir
+            seen_sets.add((ii, jj))
+            dq.append((ii, jj))
+
+for res_list in res_lists:
+    print("".join(res_list))

@@ -1,23 +1,34 @@
-from collections import defaultdict, Counter, deque
+from sortedcontainers import SortedDict
+
 
 N = int(input())
 
-X_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-X_lists.sort()
-n_dict = defaultdict(int)
-for s, c in X_lists:
-    n_dict[s] = c
+s2n_dict = SortedDict(int)
+for _ in range(N):
+    S, C = map(int, input().split())
+    s2n_dict[S] = C
 
 res = 0
-while len(n_dict):
-    k = list(n_dict.keys())[0]
-    if n_dict[k] >= 2:
-        if n_dict[k]%2 == 1:
+while len(s2n_dict):
+    k = s2n_dict.keys()[0]
+    v = s2n_dict[k]
+    if v >= 2:
+        if v%2 == 0:
+            v //= 2
+            if 2*k in s2n_dict:
+                s2n_dict[2*k] += v
+            else:
+                s2n_dict[2*k] = v
+        else:
+            v //= 2
+            if 2*k in s2n_dict:
+                s2n_dict[2*k] += v
+            else:
+                s2n_dict[2*k] = v
             res += 1
-        n_dict[2*k] += n_dict[k]//2
-        del n_dict[k]
     else:
         res += 1
-        del n_dict[k]
+
+    del s2n_dict[k]
 
 print(res)

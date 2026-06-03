@@ -1,6 +1,20 @@
 N, L, R = map(int, input().split())
 A_list = list(map(int, input().split()))
 
+res = R*N
+max_l_diff = 0
+cum_ = 0
+for i, a in enumerate(A_list, 1):
+    cum_ += a
+    max_l_diff = max(cum_-i*L, max_l_diff)
+    res = min((N-i)*R + cum_-max_l_diff, res)
+
+print(res)
+
+
+N, L, R = map(int, input().split())
+A_list = list(map(int, input().split()))
+
 cum_diff_l = 0
 max_cum_diff_l = 0
 cum = 0

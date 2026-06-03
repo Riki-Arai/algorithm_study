@@ -1,0 +1,1 @@
+x1, y1, x2, y2 = map(int, input().split()) # 取得例：1 2 res_lists = []

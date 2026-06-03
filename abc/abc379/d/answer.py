@@ -1,18 +1,28 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+import heapq as hq
 
-import sys
+Q = int(input())
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+res_list = []
+hq.heapify(res_list)
+cum = 0
+for _ in range(Q):
+    input_ = list(map(int, input().split()))
+    if input_[0] == 1:
+        hq.heappush(res_list, cum)
+    elif input_[0] == 2:
+        T = input_[1]
+        cum += T
+    else:
+        H = input_[1]
+        res = 0
+        while True:
+            if len(res_list) == 0:
+                break
+            h = hq.heappop(res_list)
+            if cum-h >= H:
+                res += 1
+            else:
+                hq.heappush(res_list, h)
+                break
+
+        print(res)

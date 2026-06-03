@@ -1,21 +1,19 @@
 N = int(input().strip())
 
-res_lists = [[0, 0]]
+res_lists = []
 for _ in range(N):
     A, B = map(int, input().split())
-    res_lists.append([A, 1])
-    res_lists.append([A+B, -1])
+    res_lists.append((A, 1))
+    res_lists.append((A+B, -1))
 
 n = 0
-days = 0
+d = 0
 res_lists.sort()
 res_list = [0]*(N+1)
-for i in range(len(res_lists)-1):
-    x, y = res_lists[i]
-    xx, yy = res_lists[i+1]
-    days = xx-x
+for x, y in res_lists:
+    res_list[n] += x-d
     n += y
-    res_list[n] += days
+    d = x
 
 print(*res_list[1:])
 

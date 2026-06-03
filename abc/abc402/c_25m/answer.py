@@ -1,33 +1,40 @@
-import sys, math, itertools, bisect, functools, copy, decimal
-from more_itertools import distinct_permutations
-from functools import cmp_to_key
-# 天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない
-from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て
-from sortedcontainers import SortedSet, SortedList, SortedDict
-from collections import defaultdict, Counter, deque
-from atcoder.dsu import DSU
-sys.setrecursionlimit(10**7)
+import sys
 
-N, M = map(int, input().split()) # 取得例：1 2
-A_lists = [list(map(int, input().split())) for _ in range(M)] # 取得例:[[1,2], [3,4]・・[9,10]]
-B_list = list(map(int, input().split()))
+input = sys.stdin.readline
 
-n2i_dict = defaultdict(int)
-for i, b in enumerate(B_list, 1):
-    n2i_dict[b] = i
+N, M = map(int, input().split())
 
-res_dict = defaultdict(int)
-for A_list in A_lists:
-    tmp_res = 1
-    for a in A_list[1:]:
-        tmp_res = max(n2i_dict[a], tmp_res)
+# dish_ings[i]: 料理iでまだ「未解禁」の食材集合
+dish_ings = []
 
-    res_dict[tmp_res] += 1
+# ing_to_dishes[x]: 食材xを使っている料理の集合
+ing_to_dishes = [set() for _ in range(N + 1)]
 
-res = 0
-for i in range(1, N+1):
-    if i in res_dict:
-        res += res_dict[i]
-        print(res)
-    else:
-        print(res)
+for i in range(M):
+    row = list(map(int, input().split()))
+    K = row[0]
+    A = row[1:]
+
+    s = set(A)
+    dish_ings.append(s)
+
+    for a in A:
+        ing_to_dishes[a].add(i)
+
+B = list(map(int, input().split()))
+
+ans = 0
+res = []
+
+for b in B:
+    # 食材bを使っている料理を全部見る
+    for dish in ing_to_dishes[b]:
+        # まだ未解禁集合に b が残っていれば消す
+        if b in dish_ings[dish]:
+            dish_ings[dish].remove(b)
+            if len(dish_ings[dish]) == 0:
+                ans += 1
+
+    res.append(str(ans))
+
+print("\n".join(res))

@@ -9,3 +9,5 @@ for i, A_list in enumerate(A_lists):
     for j, a in enumerate(A_list, i+1):
         g_lists[i][j] = a
         g_lists[j][i] = a
+
+1

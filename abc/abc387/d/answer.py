@@ -1,18 +1,34 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+from collections import defaultdict, deque, Counter
 
-import sys
+H, W = map(int, input().split())
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+S_lists = [list(input()) for _ in range(H)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
+dq = deque()
+seen_set = set()
+for i in range(H):
+    for j in range(W):
+        if S_lists[i][j] == "S":
+            dq.append((0, 0, i, j))
+            dq.append((1, 0, i, j))
+            seen_set.add((0, i, j))
+            seen_set.add((1, i, j))
+        elif S_lists[i][j] == "G":
+            g = (i, j)
+
+res = float("INF")
+move_lists = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)]]
+while len(dq):
+    bit_m, dis, i, j  = dq.popleft()
+    for mi, mj in move_lists[bit_m]:
+        ii, jj = i+mi, j+mj
+        if ii == g[0] and jj == g[1]:
+            res = min(dis+1, res)
+            continue
+        if 0 <= ii < H and 0 <= jj < W and S_lists[ii][jj] != "#" and (bit_m, ii, jj) not in seen_set:
+            seen_set.add((bit_m, ii, jj))
+            dq.append((bit_m^1, dis+1, ii, jj))
+
+if res == float("INF"):
+    print(-1)
+else:
+    print(res)

@@ -1,3 +1,23 @@
+import itertools as it
+
+N = int(input())
+
+xy_lists = []
+for _ in range(N):
+    x, y = map(int, input().split())
+    xy_lists.append((x, y))
+
+xy_sets = set(xy_lists)
+res = 0
+for i, j in it.combinations(xy_lists, 2):
+    x, y = i
+    xx, yy = j
+    if x != xx and y != yy and (xx, y) in xy_sets and (x, yy) in xy_sets:
+        res += 1
+
+print(res//2)
+
+
 from itertools import combinations
 
 n = int(input())

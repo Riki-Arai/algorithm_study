@@ -1,3 +1,27 @@
+from atcoder.dsu import DSU
+
+N, M = map(int, input().split()) # 取得例：1 2
+X_lists = [list(map(int, input().split())) for _ in range(M)] # 取得例:[[1,2], [3,4]・・[9,10]]
+
+dsu = DSU(N)
+grid_lists = [[] for _ in range(N+1)]
+for a, b in X_lists:
+    dsu.merge(a-1, b-1)
+    grid_lists[a].append(b)
+    grid_lists[b].append(a)
+
+def check_all_two(list):
+    for x in list:
+        if x != 2:
+            return False
+    return True
+
+if len(dsu.groups()) == 1 and check_all_two(map(len, grid_lists[1:])):
+    print("Yes")
+else:
+    print("No")
+
+
 import sys
 sys.setrecursionlimit(10**7)
 

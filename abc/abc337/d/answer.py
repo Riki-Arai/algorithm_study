@@ -1,2 +1,2 @@
 H, W, K = map(int, input().split())
-S_lists = [list(input()) for _ in range(H)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
+S_lists = [list(input().strip()) for _ in range(H)]

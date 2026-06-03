@@ -1,3 +1,21 @@
+# 2026/2/26に追記
+# ビット演算ではx+y=2×(xANDy)+(xXORy)が成立することを利用する
+T = int(input())
+for _ in range(T):
+    a, s = map(int, input().split())
+    ans = "No"
+    # x+y=sとおくとs-2×(xANDy)=xXORyとなり、ビット演算にマイナスはないため下記の条件が必須
+    if 2 * a <= s:
+        differ = s - 2 * a
+        # s-2×(xANDy)=diffと置くとdiff=xXORyが成立
+        # ここxANDy=aである必要もあるが、これらが成立するためには下記の条件が必須（xANDyとxXORyの関係をするとわわかる)
+        if (differ & a) == 0:
+            ans = "Yes"
+
+    print(ans)
+
+
+
 # 2025/11/12に追記
 # ビット演算ではx+y=2×(xANDy)+(xXORy)が成立する
     # ちなみに2倍しているのは繰り上がりが関係している

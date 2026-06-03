@@ -1,38 +1,31 @@
-import sys
-from collections import deque
-
-input = sys.stdin.readline
+from collections import defaultdict, Counter, deque
 
 N, M = map(int, input().split())
-A = [deque() for _ in range(M)]   # 各列（スタック）を表すキュー
-mem = [[] for _ in range(N)]      # 先頭にある色 -> その色が先頭の列の番号リスト
 
-for i in range(M):
-    k = int(input())
-    arr = list(map(int, input().split()))
-    for a in arr:
-        A[i].append(a - 1)        # 0-index化
-    mem[A[i][0]].append(i)        # 先頭色の列番号を記録
+a_lists = []
+for _ in range(M):
+    k = int(input().strip())
+    a_list = list(map(int, input().split()))
+    a_lists.append(a_list[::-1])
 
-que = deque()
-for i in range(N):
-    if len(mem[i]) == 2:
-        que.append(i)
+ball_set = set()
+dq = deque([i for i in range(M)])
+b2m_dict = defaultdict(int)
+while len(dq) > 0:
+    m = dq.popleft()
+    if len(a_lists[m]) == 0:
+        continue
+    a = a_lists[m].pop()
+    if a not in ball_set:
+        b2m_dict[a] = m
+        ball_set.add(a)
+    else:
+        dq.append(b2m_dict[a])
+        dq.append(m)
+        ball_set.discard(a)
+        del b2m_dict[a]
 
-while que:
-    now = que.popleft()
-    # now 色が先頭にある2つの列を処理
-    for p in mem[now]:
-        A[p].popleft()            # 先頭のボールを取り除く
-        if A[p]:
-            top = A[p][0]
-            mem[top].append(p)
-            if len(mem[top]) == 2:
-                que.append(top)
-    mem[now].clear()              # 再利用防止（C++の挙動と同等）
-
-for p in A:
-    if p:
-        print("No")
-        exit()
-print("Yes")
+if len(ball_set) == 0:
+    print("Yes")
+else:
+    print("No")

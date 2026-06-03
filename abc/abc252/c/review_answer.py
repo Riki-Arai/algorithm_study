@@ -1,24 +1,23 @@
 # 重複がある場合は+10秒など1通りのことは気づけたが、maxをとってそのあとにminをとる処理に気づけなかった
 # 知識が不要なタイプの問題だったのでこれは解きたかったところ
 # WAのコードのようにやはりナイーブに条件を加えるようなコードを書いている時点で大体うまくいなかない
-N = int(input())
-S_list = [input() for _ in range(N)]
+from collections import Counter
+
+N = int(input().strip())
+S_list = [input().strip() for _ in range(N)]
 
 res = float("INF")
+n_lists = []
 for i in range(10):
-    tmp_res = 0
-    n_list = [0] * 10
+    tmp_list = []
     for s in S_list:
-        n_list[s.index(str(i))] += 1
-    for i, n in enumerate(n_list):
-        # 仮に1回転のみであれば一番右にあるidxがresとなる
-        if n == 1:
-            tmp_res = max(i, tmp_res)
-        # 2回転以上の場合は10秒*n+idxとなる
-        elif n > 1:
-            tmp_res = max((n-1)*10+i, tmp_res)
+        tmp_list.append(s.index(str(i)))
 
-    res = min(tmp_res, res)
+    c_lists = sorted(Counter(tmp_list).items(), key=lambda x: [-x[1], -x[0]])
+    if c_lists[0][1] >= 2:
+        res = min(c_lists[0][0]+10*(c_lists[0][1]-1), res)
+    else:
+        res = min(c_lists[0][0], res)
 
 print(res)
 

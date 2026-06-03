@@ -3,14 +3,13 @@ from collections import defaultdict
 N, K = map(int, input().split())
 A_list = list(map(int, input().split()))
 
-cum_list = [0]
-for a in A_list:
-    cum_list.append(cum_list[-1] + a)
-
+cum = 0
+counter = defaultdict(int)
+counter[0] = 1
 res = 0
-cum_dict = defaultdict(int)
-for r in range(1, N+1):
-    cum_dict[cum_list[r-1]] += 1
-    res += cum_dict[cum_list[r]-K]
+for a in A_list:
+    cum += a
+    res += counter[cum - K]
+    counter[cum] += 1
 
 print(res)

@@ -1,2 +1,2 @@
 N = int(input())
-T = list(map(int, input().split()))
+T_list = list(map(int, input().split()))

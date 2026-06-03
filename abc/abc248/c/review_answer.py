@@ -1,21 +1,19 @@
-n, m, k = map(int, input().split())
+N, M, K = map(int, input().split())
 
-mod = 998244353
-# dp[x][y] : x 回の操作で合計 y になる方法数
-dp = [[0] * (k + 1) for _ in range(n + 1)]
-dp[0][0] = 1
-for x in range(1, n + 1):
-    for y in range(k + 1):
-        now = 0
-        for i in range(1, m + 1):
-            if y - i >= 0:
-                now += dp[x - 1][y - i]
-                now %= mod
-        dp[x][y] = now
+dp_lists = [[0]*(K+1) for _ in range(N)]
+for j in range(1, M+1):
+    dp_lists[0][j] = 1
 
-ans = 0
-for y in range(k + 1):
-    ans += dp[n][y]
-    ans %= mod
+MOD = 998244353
+for i in range(1, N):
+    for j in range(K, 0, -1):
+        if dp_lists[i-1][j] > 0:
+            for m in range(M, 0, -1):
+                if j+m <= K:
+                    dp_lists[i][j+m] = (dp_lists[i][j+m]+dp_lists[i-1][j])%MOD
 
-print(ans)
+res = 0
+for j in range(K+1):
+    res = (res+dp_lists[N-1][j])%MOD
+
+print(res)

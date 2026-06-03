@@ -1,18 +1,19 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
+from collections import defaultdict
+
 S = input().strip()
-S_list = list(input())
 
-import sys
+res_dict = defaultdict(str)
+res_dict["("] = ")"
+res_dict["["] = "]"
+res_dict["<"] = ">"
+res_list = []
+for s in S:
+    if len(res_list) and res_list[-1] in res_dict and res_dict[res_list[-1]] == s:
+        res_list.pop()
+    else:
+        res_list.append(s)
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+if len(res_list):
+    print("No")
+else:
+    print("Yes")

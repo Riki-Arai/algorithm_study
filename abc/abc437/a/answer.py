@@ -1,6 +1,3 @@
-X, Y = map(int, input().split()) # 取得例：1 2
+A, B = map(int, input().split()) # 取得例：1 2
 
-for i in range(Y):
-    X *= 2
-
-print(X)
+print(12*A+B)

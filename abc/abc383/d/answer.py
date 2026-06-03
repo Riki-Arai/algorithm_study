@@ -1,17 +1,33 @@
 N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
 
-import sys
+def is_prime(n: int) -> bool:
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+
+p_list = []
+for i in range(2*10**6+1):
+    if is_prime(i):
+        p_list.append(i)
+
+res = 0
+for i in range(len(p_list)):
+    if pow(p_list[i], 8) <= N:
+        res += 1
+    for j in range(i+1, len(p_list)):
+        if pow(p_list[i], 2)*pow(p_list[j], 2) <= N:
+            res += 1
+        else:
+            break
+
+print(res)

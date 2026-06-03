@@ -1,18 +1,29 @@
 N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
+S = input()
 
-import sys
+# 1 の位置
+p = []
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+for i in range(N):
+    if S[i] == '1':
+        p.append(i)
+
+k = len(p)
+mid = k // 2
+center = p[mid]
+ans = 0
+# 左側を詰める
+# 本来あるべき位置:
+# center-1, center-2, ...
+for i in range(mid):
+    target = center - (mid - i)
+    ans += abs(p[i] - target)
+
+# 右側を詰める
+# 本来あるべき位置:
+# center+1, center+2, ...
+for i in range(mid + 1, k):
+    target = center + (i - mid)
+    ans += abs(p[i] - target)
+
+print(ans)

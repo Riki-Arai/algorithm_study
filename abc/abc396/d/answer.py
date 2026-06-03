@@ -1,18 +1,29 @@
-N = int(input())
-A, B = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
-A_list = input().split() # 取得例：["a", "b", "c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1、A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-S = input().strip()
-S_list = list(input())
-
 import sys
+sys.setrecursionlimit(10**7)
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+N, M = map(int, input().split())
+
+g_lists = [[] for _ in range(N+1)]
+for _ in range(M):
+    u, v, w = map(int, input().split())
+    g_lists[u].append([v, w])
+    g_lists[v].append([u, w])
+
+res = float("INF")
+seen_set = set()
+def dfs(n, tmp_res):
+    global res
+    seen_set.add(n)
+    for nn, w in g_lists[n]:
+        if nn == N:
+            res = min(tmp_res^w, res)
+            continue
+        if nn not in seen_set:
+            seen_set.add(nn)
+            dfs(nn, tmp_res^w)
+            seen_set.discard(nn)
+
+    seen_set.discard(n)
+
+dfs(1, 0)
+print(res)

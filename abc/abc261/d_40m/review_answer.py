@@ -7,6 +7,30 @@ for _ in range(M):
     C, Y = map(int, input().split())
     c_dict[C-1] = Y
 
+dp_lists = [[-float("INF")]*(N+1) for _ in range(N+1)]
+dp_lists[0][0] = 0
+dp_lists[1][0] = 0
+for i in range(1, N+1):
+    ii = i - 1
+    for j in range(1, N+1):
+        jj = j - 1
+        dp_lists[i][j] = max(dp_lists[ii][jj]+X_list[ii]+c_dict[jj], dp_lists[i][j])
+
+    for j in range(N+1):
+        dp_lists[i][0] = max(dp_lists[ii][j], dp_lists[i][0])
+
+print(max(dp_lists[N]))
+
+
+from collections import defaultdict
+
+N, M = map(int, input().split())
+X_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
+c_dict = defaultdict(int)
+for _ in range(M):
+    C, Y = map(int, input().split())
+    c_dict[C-1] = Y
+
 INF = -10**18
 dp_lists = [[INF]*(N+1) for _ in range(N+1)]
 dp_lists[0][0] = 0

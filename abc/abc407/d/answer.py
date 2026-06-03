@@ -1,20 +1,67 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+H, W = map(int, input().split())
+A = [list(map(int, input().split())) for _ in range(H)]
 
-import sys
+# (1) 何も置かない時の XOR
+total_xor = 0
+for i in range(H):
+    for j in range(W):
+        total_xor ^= A[i][j]
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+# (2) 縦・横のドミノ候補を愚直に列挙
+vertical = []
+horizontal = []
+
+for i in range(H - 1):
+    for j in range(W):
+        vertical.append(((i, j), (i + 1, j)))
+
+for i in range(H):
+    for j in range(W - 1):
+        horizontal.append(((i, j), (i, j + 1)))
+
+# (3)(4) bit探索で、同じマスに置かないパターンだけ取得
+def enumerate_patterns(dominoes):
+    patterns = []
+    n = len(dominoes)
+
+    for bit in range(1 << n):
+        used = set()
+        xor_val = 0
+        ok = True
+
+        for k in range(n):
+            if not ((bit >> k) & 1):
+                continue
+
+            c1, c2 = dominoes[k]
+
+            if c1 in used or c2 in used:
+                ok = False
+                break
+
+            used.add(c1)
+            used.add(c2)
+
+            xor_val ^= A[c1[0]][c1[1]]
+            xor_val ^= A[c2[0]][c2[1]]
+
+        if ok:
+            patterns.append((used, xor_val))
+
+    return patterns
+
+vertical_patterns = enumerate_patterns(vertical)
+horizontal_patterns = enumerate_patterns(horizontal)
+
+# (5) 置いたマスの XOR を total_xor に適用して最大値を更新
+ans = total_xor
+
+for v_used, v_xor in vertical_patterns:
+    for h_used, h_xor in horizontal_patterns:
+        if v_used & h_used:
+            continue
+
+        score = total_xor ^ v_xor ^ h_xor
+        ans = max(ans, score)
+
+print(ans)

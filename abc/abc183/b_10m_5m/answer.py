@@ -1,0 +1,1 @@
+Sx, Sy, Gx, Gy = map(int, input().split()) # 取得例：1 2

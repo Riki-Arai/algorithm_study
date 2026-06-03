@@ -1,3 +1,18 @@
+N = int(input()) # 数値：1
+X_lists = [list(map(int, input().split())) for _ in range(N)]
+
+min_i, max_i, min_j, max_j = float("INF"), 0, float("INF"), 0
+for r, c in X_lists:
+    min_i = min(r, min_i)
+    max_i = max(r, max_i)
+    min_j = min(c, min_j)
+    max_j = max(c, max_j)
+
+i_dis = (max_i-min_i-1)//2 + 1
+j_dis = (max_j-min_j-1)//2 + 1
+print(max(i_dis, j_dis))
+
+
 def main():
     import sys
     input_data = sys.stdin.read().strip().split()

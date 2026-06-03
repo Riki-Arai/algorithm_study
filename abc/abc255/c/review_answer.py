@@ -1,3 +1,28 @@
+x, a, d, n = map(int, input().split())
+
+# 公差が負の場合、数列を逆向きから正向きに直す
+if d < 0:
+    a = a + d * (n - 1)
+    d = -d
+
+left = 0
+right = n - 1
+# 二分探索で a + d*i >= x となる最小の i を探す
+while left <= right:
+    mid = (left + right) // 2
+    if a + d * mid < x:
+        left = mid + 1
+    else:
+        right = mid - 1
+
+# 探索位置の前後を少し広めに確認
+result = float("INF")
+for i in range(max(0, left - 5), min(n - 1, left + 5) + 1):
+    result = min(result, abs(a + d * i - x))
+
+print(result)
+
+
 X, A, D, N = map(int, input().split())
 
 if D < 0:

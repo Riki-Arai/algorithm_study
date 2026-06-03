@@ -1,22 +1,24 @@
-### 自分の解答
 N, M = map(int, input().split())
 A_list = sorted(map(int, input().split()))
 
+res = float("INF")
 sum_ = sum(A_list)
-res = sum_
+tmp_sum = 0
+A_list.sort()
 A_list = A_list*2
-cum_ = 0
-count = 0
-for i in range(2*N-1):
-    n = A_list[i]
-    nn = A_list[i+1]
-    count += 1
-    cum_ += n
-    if not(n == nn or (n+1)%M == nn) or count == N:
-        res = min(sum_-cum_, res)
-        count = 0
-        cum_ = 0
+cur_x = A_list[0]
+tmp_sum += cur_x
+for i in range(1, len(A_list)):
+    a = A_list[i]
+    if cur_x == a or (cur_x+1)%M == a:
+        tmp_sum += a
+        cur_x = a
+    else:
+        res = min(res, max(sum_-tmp_sum, 0))
+        tmp_sum = a
+        cur_x = a
 
+res = min(res, max(sum_-tmp_sum, 0))
 print(res)
 
 

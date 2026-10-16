@@ -8,8 +8,10 @@ for _ in range(T):
     N, D, K = map(int, input().split())
     K -= 1
     g = math.gcd(N, D)
+    # 互いに素の世界に変換する。(0、d、2d、3d・・(mod n)とするとn-1を上限としてdずつ巡回する性質)
     d = D//g
     n = N//g
+    # n-1を上限としてd*Kだけ巡回してgをかけることで復元。K//nでは何周目かどうかで加算することでマス右にずらす役割、
     print((d*K)%n*g+K//n)
 
 

@@ -1,20 +1,95 @@
+import bisect as bi
+from collections import Counter
+
 N = int(input()) # 取得例：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例：A
-S, T = input().split() # 取得例：A B
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["a","b","c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
 
-import sys
+def miller_rabin(n):
+    if n < 2:
+        return False
+    small_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+    for sp in small_primes:
+        if n == sp:
+            return True
+        if n % sp == 0 and n != sp:
+            return False
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+    test_bases = [2, 325, 9375, 28178, 450775, 9780504, 1795265022]
+    d = n - 1
+    s = 0
+    while d % 2 == 0:
+        d //= 2
+        s += 1
+
+    def check(a, s, d, n):
+        x = pow(a, d, n)
+        if x == 1 or x == n - 1:
+            return True
+        for _ in range(s - 1):
+            x = (x * x) % n
+            if x == n - 1:
+                return True
+        return False
+
+    for a in test_bases:
+        if a % n == 0:  # a が n と同じ場合はスキップ
+            return True
+        if not check(a, s, d, n):
+            return False
+    return True
+
+
+def is_prime(n):
+    return miller_rabin(n)
+
+
+def gcd(a, b):
+    """ユークリッドの互除法"""
+    while b:
+        a, b = b, a % b
+    return a
+
+
+def pollard_rho(n):
+    import random
+
+    if n % 2 == 0:
+        return 2
+    if is_prime(n):
+        return n  # n が素数の場合はそのまま返す
+
+    while True:
+        x = random.randrange(2, n - 1)
+        c = random.randrange(1, n - 1)
+        y = x
+        d = 1
+        while d == 1:
+            x = (x * x + c) % n
+            y = (y * y + c) % n
+            y = (y * y + c) % n
+            d = gcd(abs(x - y), n)
+            if d == n:
+                break
+        if d > 1 and d < n:
+            return d
+
+
+###### 注意! 取得したリストの中身はランダムなので必要によっては常に同じ結果が欲しい時はsortをすること
+def prime_factorize(n):
+    if n == 1:
+        return []
+    if is_prime(n):
+        return [n]
+    divisor = pollard_rho(n)
+    return prime_factorize(divisor) + prime_factorize(n // divisor)
+
+cum_list = [1]
+for i in range(2, 10**6+1):
+    cum_list.append(cum_list[-1]+i)
+
+res = 0
+p_lists = prime_factorize(N)
+p2c_dict = Counter(p_lists)
+for v in p2c_dict.values():
+    res += bi.bisect_right(cum_list, v)
+
+print(res)

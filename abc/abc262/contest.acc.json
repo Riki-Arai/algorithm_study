@@ -1,15 +1,15 @@
 {
   "contest": {
-    "id": "abc262",
-    "title": "AtCoder Beginner Contest 262",
-    "url": "https://atcoder.jp/contests/abc262"
+    "id": "abc261",
+    "title": "AtCoder Beginner Contest 261",
+    "url": "https://atcoder.jp/contests/abc261"
   },
   "tasks": [
     {
-      "id": "abc262_a",
+      "id": "abc261_a",
       "label": "A",
-      "title": "World Cup",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_a",
+      "title": "Intersection",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_a",
       "directory": {
         "path": "a",
         "testdir": "tests",
@@ -17,10 +17,10 @@
       }
     },
     {
-      "id": "abc262_b",
+      "id": "abc261_b",
       "label": "B",
-      "title": "Triangle (Easier)",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_b",
+      "title": "Tournament Result",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_b",
       "directory": {
         "path": "b",
         "testdir": "tests",
@@ -28,10 +28,10 @@
       }
     },
     {
-      "id": "abc262_c",
+      "id": "abc261_c",
       "label": "C",
-      "title": "Min Max Pair",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_c",
+      "title": "NewFolder(1)",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_c",
       "directory": {
         "path": "c",
         "testdir": "tests",
@@ -39,10 +39,10 @@
       }
     },
     {
-      "id": "abc262_d",
+      "id": "abc261_d",
       "label": "D",
-      "title": "I Hate Non-integer Number",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_d",
+      "title": "Flipping and Bonus",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_d",
       "directory": {
         "path": "d",
         "testdir": "tests",
@@ -50,28 +50,28 @@
       }
     },
     {
-      "id": "abc262_e",
+      "id": "abc261_e",
       "label": "E",
-      "title": "Red and Blue Graph",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_e"
+      "title": "Many Operations",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_e"
     },
     {
-      "id": "abc262_f",
+      "id": "abc261_f",
       "label": "F",
-      "title": "Erase and Rotate",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_f"
+      "title": "Sorting Color Balls",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_f"
     },
     {
-      "id": "abc262_g",
+      "id": "abc261_g",
       "label": "G",
-      "title": "LIS with Stack",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_g"
+      "title": "Replace",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_g"
     },
     {
-      "id": "abc262_h",
+      "id": "abc261_h",
       "label": "Ex",
-      "title": "Max Limited Sequence",
-      "url": "https://atcoder.jp/contests/abc262/tasks/abc262_h"
+      "title": "Game on Graph",
+      "url": "https://atcoder.jp/contests/abc261/tasks/abc261_h"
     }
   ]
 }

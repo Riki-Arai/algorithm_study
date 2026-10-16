@@ -1,6 +1,7 @@
 import sys; sys.setrecursionlimit(10**7)
 
 N, Q = map(int, input().split()) # 取得例：1 2
+    
 
 front_card_list = [-1]*(N+1)
 back_card_list = [-1]*(N+1)

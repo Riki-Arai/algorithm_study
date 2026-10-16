@@ -1,11 +1,17 @@
-N = int(input()) # 数値：1
-T = input().strip() # 取得例："A"
+N = int(input())
+S = input().strip()
 
-count = 0
-dp_list = [[0, 0] for _ in range(N+1)]
-if T[0] == "1":
-    dp_list[0][0] = 1
-else:
-    count += 1
+dp_lists = [[0, 0] for _ in range(N+1)]
+for i in range(N):
+    if S[i] == "0":
+        dp_lists[i+1][0] = dp_lists[i][1]
+        dp_lists[i+1][1] = dp_lists[i][0]+1
+    else:
+        dp_lists[i+1][0] = dp_lists[i][0]+1
+        dp_lists[i+1][1] = dp_lists[i][1]
 
-for i, t in enumerate(T[1:], 1):
+res = 0
+for i in range(N+1):
+    res += dp_lists[i][0]
+
+print(res)

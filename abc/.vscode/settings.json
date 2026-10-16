@@ -1,0 +1,12 @@
+{
+    "python.defaultInterpreterPath": "~/.pyenv/versions/pypy3.11-7.3.22",
+    "vim.normalModeKeybindingsNonRecursive": [
+    {
+        "before": ["<CR>"],
+        "commands": [
+            "editor.action.insertLineAfter",
+            "cursorUp"
+        ]
+    }
+]
+}

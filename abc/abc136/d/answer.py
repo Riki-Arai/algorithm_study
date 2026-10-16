@@ -1,20 +1,43 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
+'''
+(1) 試行回数的にパターンがあるタイプの問題なので、観察用コードを作成して出力を観察
+(2) RLの境目に人が集まる、RとLの偶奇が同じときはそれらの和の半分、そうではないときは細かく調整することなどがわかった
+(3) ランレングスを用いつつ、出力と照らし合わせて偶奇が異なる時のパターンをコードに落とし込んだ
+'''
+import itertools as it
+from collections import deque
+
 S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
 
-import sys
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+dq = deque()
+for i in range(len(S)-1):
+    if S[i] == "R" and S[i+1] == "L":
+        dq.append(i)
+
+g_lists = [(k, len(list(v))) for k, v in it.groupby(S)]
+res_list = [0]*len(S)
+for i in range(0, len(g_lists)-1, 2):
+    k, v = g_lists[i]
+    kk, vv = g_lists[i+1]
+    j = dq.popleft()
+    if k == "R" and kk == "L":
+        if v%2 == vv%2:
+            res_list[j] = int((v+vv)//2)
+            res_list[j+1] = int((v+vv)//2)
+        else:
+            if max(v, vv)%2 == 0:
+                if v > vv:
+                    res_list[j] = (v+vv)//2
+                    res_list[j+1] = (v+vv+1)//2
+                else:
+                    res_list[j] = (v+vv+1)//2
+                    res_list[j+1] = (v+vv)//2
+            else:
+                if v > vv:
+                    res_list[j] = (v+vv+1)//2
+                    res_list[j+1] = (v+vv)//2
+                else:
+                    res_list[j] = (v+vv)//2
+                    res_list[j+1] = (v+vv+1)//2
+
+print(*res_list)

@@ -1,20 +1,24 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+X, Y = map(int, input().split()) # 取得例：1 2
 
-import sys
+MOD = 10**9 + 7
+def nCr_MOD(n, r):
+    if r < 0 or r > n:
+        return 0
+    r = min(r, n - r)
+    num = 1
+    den = 1
+    for i in range(r):
+        num = (num * (n - i)) % MOD
+        den = (den * (i + 1)) % MOD
+    return (num * pow(den, MOD - 2, MOD)) % MOD
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+res = 0
+for i in range(X//2+1):
+    if i == 0 and 2*X == Y:
+        res = (res + 1)%MOD
+    elif i == X and X%2 == 0 and X//2 == Y:
+        res = (res + 1)%MOD
+    elif 0 < i < X and (X-2*i)*2 + i == Y:
+        res = (res + nCr_MOD(X-2*i+i, i))%MOD
+
+print(res)

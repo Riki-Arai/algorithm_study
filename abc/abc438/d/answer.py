@@ -1,17 +1,13 @@
-N = int(input()) # 数値：1
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-B_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-C_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
+N = int(input())
+A_list = list(map(int, input().split()))
+B_list = list(map(int, input().split()))
+C_list = list(map(int, input().split()))
 
-dp_list = [-float("INF")]*(N-1)
-sum_c = sum(C_list)-sum(C_list[:2])
-res = A_list[0]+B_list[1]+sum_c
-sum_a = A_list[0]
-dp_list[1] = A_list[0]+B_list[1]
-for i in range(2, N-1):
-    sum_a += A_list[i-1]
-    dp_list[i] = max(sum_a+B_list[i], dp_list[i-1]+B_list[i])
-    sum_c -= C_list[i]
-    res = max(dp_list[i]+sum_c, res)
+dp_lists = [[-float("INF")]*4 for _ in range(N+1)]
+dp_lists[0][0] = 0
+for i in range(N):
+    dp_lists[i+1][1] = max(dp_lists[i][0]+A_list[i], dp_lists[i][1]+A_list[i])
+    dp_lists[i+1][2] = max(dp_lists[i][1]+B_list[i], dp_lists[i][2]+B_list[i])
+    dp_lists[i+1][3] = max(dp_lists[i][2]+C_list[i], dp_lists[i][3]+C_list[i])
 
-print(res)
+print(dp_lists[N][-1])

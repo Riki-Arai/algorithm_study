@@ -5,7 +5,7 @@
 #A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
 #
 #l_idx, r_idx = 0, -1
-#a1, b1 = A_lists[l_idx]
+#a1, b1 = [l_idx]
 #a2, b2 = A_lists[r_idx]
 #sum = sum(map(lambda x: x[0], A_lists))
 #tmp_sum = 0

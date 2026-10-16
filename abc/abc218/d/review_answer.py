@@ -12,6 +12,7 @@ res = 0
 for i, j in it.combinations(xy_lists, 2):
     x, y = i
     xx, yy = j
+    # 対角線のペアを取得し、それらをもとにして長方形が作れるかどうかを確認
     if x != xx and y != yy and (xx, y) in xy_sets and (x, yy) in xy_sets:
         res += 1
 

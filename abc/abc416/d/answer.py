@@ -1,20 +1,41 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
-
 import sys
+from bisect import bisect_left, bisect_right
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+T = int(input().strip())
+
+for _ in range(T):
+    N, M = map(int, input().split())
+    A = [x % M for x in map(int, input().split())]
+    B = [x % M for x in map(int, input().split())]
+
+    A.sort()
+    B.sort()
+
+    # (2) (ai + bi) % M == 0 となるペアを探して除外
+    used_a = [False] * N
+    used_b = [False] * N
+
+    for i, a in enumerate(A):
+        target = (-a) % M
+
+        l = bisect_left(B, target)
+        r = bisect_right(B, target)
+
+        for j in range(l, r):
+            if not used_b[j]:
+                used_a[i] = True
+                used_b[j] = True
+                break
+
+    # (3) 残った要素を大きい順に組み合わせる
+    rem_a = [A[i] for i in range(N) if not used_a[i]]
+    rem_b = [B[i] for i in range(N) if not used_b[i]]
+
+    rem_a.sort(reverse=True)
+    rem_b.sort()
+
+    ans = 0
+    for a, b in zip(rem_a, rem_b):
+        ans += (a + b) % M
+
+    print(ans)

@@ -1,15 +1,15 @@
 {
   "contest": {
-    "id": "abc393",
-    "title": "AtCoder Beginner Contest 393",
-    "url": "https://atcoder.jp/contests/abc393"
+    "id": "abc303",
+    "title": "NS Solutions Corporation Programming Contest 2023（AtCoder Beginner Contest 303）",
+    "url": "https://atcoder.jp/contests/abc303"
   },
   "tasks": [
     {
-      "id": "abc393_a",
+      "id": "abc303_a",
       "label": "A",
-      "title": "Poisonous Oyster ",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_a",
+      "title": "Similar String",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_a",
       "directory": {
         "path": "a",
         "testdir": "tests",
@@ -17,10 +17,10 @@
       }
     },
     {
-      "id": "abc393_b",
+      "id": "abc303_b",
       "label": "B",
-      "title": "A..B..C",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_b",
+      "title": "Discord",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_b",
       "directory": {
         "path": "b",
         "testdir": "tests",
@@ -28,10 +28,10 @@
       }
     },
     {
-      "id": "abc393_c",
+      "id": "abc303_c",
       "label": "C",
-      "title": "Make it Simple",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_c",
+      "title": "Dash",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_c",
       "directory": {
         "path": "c",
         "testdir": "tests",
@@ -39,10 +39,10 @@
       }
     },
     {
-      "id": "abc393_d",
+      "id": "abc303_d",
       "label": "D",
-      "title": "Swap to Gather",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_d",
+      "title": "Shift vs. CapsLock",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_d",
       "directory": {
         "path": "d",
         "testdir": "tests",
@@ -50,22 +50,28 @@
       }
     },
     {
-      "id": "abc393_e",
+      "id": "abc303_e",
       "label": "E",
-      "title": "GCD of Subset",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_e"
+      "title": "A Gift From the Stars",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_e"
     },
     {
-      "id": "abc393_f",
+      "id": "abc303_f",
       "label": "F",
-      "title": "Prefix LIS Query ",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_f"
+      "title": "Damage over Time",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_f"
     },
     {
-      "id": "abc393_g",
+      "id": "abc303_g",
       "label": "G",
-      "title": "Unevenness",
-      "url": "https://atcoder.jp/contests/abc393/tasks/abc393_g"
+      "title": "Bags Game",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_g"
+    },
+    {
+      "id": "abc303_h",
+      "label": "Ex",
+      "title": "Constrained Tree Degree",
+      "url": "https://atcoder.jp/contests/abc303/tasks/abc303_h"
     }
   ]
 }

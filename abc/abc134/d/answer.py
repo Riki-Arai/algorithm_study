@@ -1,20 +1,25 @@
+'''
+(1) 小さい箱からボールを入れるかどうかを決めてしまうと、それより大きい箱にボールを入れた時に小さい倍数の総数に影響が出てしまう
+(2) よって大きい箱から順番にaの値に従って入れるかどうかを決めていくことで、それより小さい箱はaのよって後出し的に入れるかどうかの判断が可能
+(3) 倍数の合計については、大きくなるほど計算量が少なくなる性質（級数）があるのでN*logNに収まる
+'''
 N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+a_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
 
-import sys
+b2b_list = [0]*N
+for i in range(N-1, -1, -1):
+    a = a_list[i]
+    cum = 0
+    for j in range(i, N, i+1):
+        cum += b2b_list[j]
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+    if cum%2 != a:
+        b2b_list[i] += 1
+
+res_list = []
+for i in range(N):
+    if b2b_list[i]:
+        res_list.append(i+1)
+
+print(len(res_list))
+print(*res_list)

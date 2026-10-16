@@ -1,3 +1,7 @@
+'''
+(1) 制約を見るだけでもいかにもDPで、O(N*X*B)でも間に合う
+(2) 仮定には興味がないのでとにかくX以内に値になることができればTrueにしてあげればいい
+'''
 import sys
 input = sys.stdin.readline
 

@@ -1,3 +1,32 @@
+import sys, math
+sys.setrecursionlimit(10**7)
+
+A, B, K = map(int, input().split())
+
+a, b = A, B
+res_list = []
+k = 1
+for _ in range(A+B):
+    if a == 0:
+        res_list.append("b")
+        continue
+    if b == 0:
+        res_list.append("a")
+        continue
+
+    a_k = math.factorial(a+b-1) // (math.factorial(a-1) * math.factorial(b))
+    # aを選択した時にパターン数がK未満だと、K番目のパターンに辿り着かないないので、その時はbを選択していく
+    if K > a_k:
+        # bを選択した時点でaを選択した時のパターン分だけKの数を削ることができる
+        K -= a_k
+        b -= 1
+        res_list.append("b")
+    else:
+        a -= 1
+        res_list.append("a")
+
+print("".join(res_list))
+
 from math import comb
 
 A, B, K = map(int, input().split())

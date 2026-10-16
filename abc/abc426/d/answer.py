@@ -1,20 +1,53 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
-
 import sys
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+
+def solve():
+    input = sys.stdin.readline
+
+    T = int(input())
+
+    for _ in range(T):
+        N = int(input())
+        S = input().strip()
+
+        # 0 の総数 / 1 の総数
+        cnt0 = S.count("0")
+        cnt1 = N - cnt0
+
+        # ランレングス圧縮
+        runs = []
+        i = 0
+
+        while i < N:
+            j = i
+            while j < N and S[j] == S[i]:
+                j += 1
+
+            runs.append((S[i], j - i))
+            i = j
+
+        # 0 の極大区間の最大長
+        max0 = 0
+
+        # 1 の極大区間の最大長
+        max1 = 0
+
+        for c, length in runs:
+            if c == "0":
+                max0 = max(max0, length)
+            else:
+                max1 = max(max1, length)
+
+        # 最終的に全部 0 にする場合
+        # 残す最大の 0 区間を 1 つ選ぶ
+        ans0 = N - 2 * max0 + cnt0
+
+        # 最終的に全部 1 にする場合
+        # 残す最大の 1 区間を 1 つ選ぶ
+        ans1 = N - 2 * max1 + cnt1
+
+        print(min(ans0, ans1))
+
+
+if __name__ == "__main__":
+    solve()

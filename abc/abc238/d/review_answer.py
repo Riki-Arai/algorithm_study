@@ -7,8 +7,8 @@ for _ in range(T):
     # x+y=sとおくとs-2×(xANDy)=xXORyとなり、ビット演算にマイナスはないため下記の条件が必須
     if 2 * a <= s:
         differ = s - 2 * a
-        # s-2×(xANDy)=diffと置くとdiff=xXORyが成立
-        # ここxANDy=aである必要もあるが、これらが成立するためには下記の条件が必須（xANDyとxXORyの関係をするとわわかる)
+        # differで1や0となるものは、xANDy=aからするとそれぞれのビットで0同士や1同士になってはいけない
+        # よってdifferとaのビットでお互いに共通の値となるビットを持たないことが条件となる
         if (differ & a) == 0:
             ans = "Yes"
 

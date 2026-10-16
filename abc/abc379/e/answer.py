@@ -1,0 +1,2 @@
+N = int(input().strip())
+S = input().strip() # 取得例："A"

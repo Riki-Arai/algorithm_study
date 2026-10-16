@@ -1,2 +1,2 @@
-S = input().strip()
+S = sys.stdin.readline().strip()
 N = len(S)

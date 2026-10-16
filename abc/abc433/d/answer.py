@@ -1,21 +1,25 @@
 from collections import defaultdict
 
-N, M = map(int, input().split()) # 取得例：1 2
-A_list = list(map(int, input().split()))
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
 
-max_v = max(map(len, map(str, A_list)))
-res = 0
-res_lists = [defaultdict(int) for _ in range(max_v+2)]
-for a in A_list:
-    for i in range(max_v+1):
-        res_lists[i+1][a*10**i%M] += 1
+# cnt[d][r] = 桁数が d で、M で割った余りが r の要素数
+cnt = defaultdict(int)
 
-res = 0
-for a in A_list:
-    d = len(str(a))+1
-    if M-a%M in res_lists[d]:
-        res += res_lists[d][M-a%M]
-    elif a%M == 0 and 0 in res_lists[d]:
-        res += res_lists[d][0]
+for a in A:
+    d = len(str(a))
+    cnt[(d, a % M)] += 1
 
-print(res)
+ans = 0
+
+for a in A:
+    # a の後ろに b を連結する
+    # a * 10^d + b
+    for d in range(1, 11):
+        p = pow(10, d, M)
+        target = (-a * p) % M
+
+        # 桁数 d、余り target の b の個数
+        ans += cnt[(d, target)]
+
+print(ans)

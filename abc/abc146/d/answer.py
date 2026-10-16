@@ -1,20 +1,67 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
-
+'''
+(1) まずは木なのでサイクルは存在しない。そして1本の次数のものは潰しが効くので、最大最大次数のものから攻めると良さそう
+(2) 番号の割り振り方についてはなるべくすでに使用した番号を使いたい
+(3) そこで接続している辺のうちで番号をすでに割り振った番号を起点にまずは-1を行い、それでも不足していれば+1を行う
+'''
+from collections import deque
 import sys
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+input = sys.stdin.readline
+
+N = int(input())
+
+G = [[] for _ in range(N)]
+edges = []
+
+for i in range(N - 1):
+    a, b = map(int, input().split())
+    a -= 1
+    b -= 1
+    G[a].append((b, i))
+    G[b].append((a, i))
+    edges.append((a, b))
+
+# 最大次数の頂点（同率なら番号最小）
+root = 0
+mx = -1
+for i in range(N):
+    if len(G[i]) > mx:
+        mx = len(G[i])
+        root = i
+
+K = mx
+ans = [0] * (N - 1)
+
+visited = [False] * N
+visited[root] = True
+
+# (頂点, 親辺の色)
+q = deque()
+q.append((root, K + 1))   # 根では全て1から使いたいので K+1 とする
+
+while q:
+    v, prev = q.popleft()
+
+    # 使用可能な色を作る
+    colors = []
+
+    # prev-1, prev-2, ..., 1
+    for c in range(prev - 1, 0, -1):
+        colors.append(c)
+
+    # prev+1, prev+2, ..., K
+    for c in range(prev + 1, K + 1):
+        colors.append(c)
+
+    idx = 0
+    for nv, eid in G[v]:
+        if visited[nv]:
+            continue
+        col = colors[idx]
+        idx += 1
+        ans[eid] = col
+        visited[nv] = True
+        q.append((nv, col))
+
+print(K)
+print(*ans, sep="\n")

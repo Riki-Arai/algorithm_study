@@ -1,22 +1,33 @@
-import sys; sys.setrecursionlimit(10**7)
+'''
+※解説AC
+原因
+(1) 部分列をカウントした方がわかりやすい
+(2) 部分文字列の中に部分列がどれだけあるかという設定が今の自分には難しい
+    →新しいTが作られるまでは、部分列の起点(T[0])となる一番左側インデックスを持ち続ける発想がなかった
+    →上記をやっておけばfor文を回すたびに右側に伸ばした時のカウントができる
+    →一方で新しいTを作ったあとでもインデックスを更新すれば左側に伸ばした時のカウントもしてくれる
+(3) 新しいTが作られた時に左側に伸ばした時のカウント方法が新鮮だったので、この方法はぜひ使いこなせるようにしたい
+'''
+S = input().strip()
+T = input().strip()
 
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
+res = (1 + len(S)) * len(S) // 2
+# 入力1を例にして考える
+# dp_list[0]であればaが成立するための一番左側のインデックス
+# dp_list[1]であればabが成立するための一番左側の起点(a)のインデックス
+# dp_list[2]であればabaが成立するための一番左側の起点(a)のインデックス
+dp_list = [-float("INF")]*len(T)
+for i in range(len(S)):
+    s = S[i]
+    for j in range(len(T)-1, -1, -1):
+        t = T[j]
+        if s == t:
+            if j == 0:
+                dp_list[j] = max(i, dp_list[j])
+            else:
+                dp_list[j] = max(dp_list[j-1], dp_list[j])
 
-import sys
+    if dp_list[-1] != -float("INF"):
+        res -= dp_list[-1]+1
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+print(res)

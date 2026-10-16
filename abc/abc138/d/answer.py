@@ -1,20 +1,32 @@
-N = int(input()) # 数値：1
-N, M = map(int, input().split()) # 取得例：1 2
-S = input().strip() # 取得例："A"
-S, T = input().split() # 取得例："A" "B"
-S_list = list(input()) # 取得例：["A","B"・・・]
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["A","B","C"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：["A","B"・・・"E"]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
-
+'''
+(1) 1を根にした木なので、回路を持たずに上から下に降るイメージ
+(2) Q回ごとに木を探索するとTLEとなるので、先にQ回分の操作で点に重みを付与してからスコアを伝搬すると良さそう
+(3) 最初はBFSをやっていたが、バックトラックによる累積和の調整が便利な点を踏まえてDFSに切り替えて解いた
+'''
 import sys
+sys.setrecursionlimit(10**7)
 
-A_lists = []
-for i in sys.stdin:
-    A_lists.append(i.strip())
+N, Q = map(int, input().split()) # 取得例：1 2
+
+g_lists = [[] for _ in range(N+1)]
+for _ in range(N-1):
+    a, b = map(int, input().split()) # 取得例：1 2
+    g_lists[a].append(b)
+    g_lists[b].append(a)
+
+w_list = [0]*(N+1)
+for _ in range(Q):
+    p, x = map(int, input().split()) # 取得例：1 2
+    w_list[p] += x
+
+res_list = [0]*(N+1)
+seen_set = set([1])
+def dfs(a, cum):
+    res_list[a] = cum
+    for b in g_lists[a]:
+        if b not in seen_set:
+            seen_set.add(b)
+            dfs(b, cum+w_list[b])
+
+dfs(1, w_list[1])
+print(*res_list[1:])

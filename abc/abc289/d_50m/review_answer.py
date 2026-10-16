@@ -1,3 +1,6 @@
+'''
+(1) DPの典型問題の例として出てくるカエルの問題とほぼ同じ設定
+'''
 N = int(input())
 A_list = list(map(int, input().split())) # 取得例：[1, 2, 3]、1行の入力用
 M = int(input())

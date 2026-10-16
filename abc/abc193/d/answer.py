@@ -1,26 +1,34 @@
-N = int(input()) # 数値
+from collections import Counter
+
+K = int(input()) # 数値
 S = input().strip() # 文字列
 T = input().strip() # 文字列
-S_list = list(input())
-A, B = input().split()
-S, T = input().split()
-A, B = map(int, input().split())
-N, M = map(int, input().split())
-N, K = map(int, input().split())
-N, Q = map(int, input().split())
-S, T = map(int, input().split())
-A_list = list(map(int, input().split())) # 取得例：[1,2,3]、1行の入力用
-A_list = input().split() # 取得例：["a","b","c"]、1行の入力用
-A_list = [input() for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用
-A_list = [int(input()) for _ in range(N)] # 取得例：[A1,A2・・・An]、N行の入力用(int型に変換)
-A_lists = [list(input()) for _ in range(N)] # 取得例:[["#","#"], [".","."]・・・["#","#"]]、文字列をリストに分解
-A_lists = [list(map(int, input().split())) for _ in range(N)] # 取得例:[[1,2], [3,4]・・[9,10]]
-A_lists = [input().split() for _ in range(N)] # 取得例:[["A","B"], ["B",2]・・["F",6]]、2列の入力を型変換せずに取得
-A_lists = [[s, int(x)] for s, x in (input().split() for _ in range(N))] # 取得例:[["A",1], ["B",2]・・["E",5]]
-A_lists = [[int(x), s] for x, s in (input().split() for _ in range(N))] # 取得例:[[1,"A"], [2,"B"] ・・[5,"E"]]
 
-import sys
+rem_list = [K]*10
+for k, v in Counter(S[:-1]+T[:-1]).items():
+    rem_list[int(k)] -= int(v)
 
-A_list = []
-for i in sys.stdin:
-    A_list.append(i)
+mol = 0
+den = 0
+for s in range(1, 10):
+    c_rem_list = rem_list.copy()
+    if c_rem_list[s] > 0:
+        c_rem_list[s] -= 1
+        s_c2n_dict = Counter(map(int, list(S[:-1]+str(s))))
+        s_score = sum([i*10**s_c2n_dict[i] if i in s_c2n_dict else i for i in range(1, 10)])
+        for t in range(1, 10):
+            if c_rem_list[t] > 0:
+                t_c2n_dict = Counter(map(int, list(T[:-1]+str(t))))
+                t_score = sum([i*10**t_c2n_dict[i] if i in t_c2n_dict else i for i in range(1, 10)])
+                if s == t:
+                    pat = (rem_list[s]*(rem_list[s]-1))
+                    if s_score > t_score:
+                        mol += pat
+                    den += pat
+                else:
+                    pat = rem_list[s]*rem_list[t]
+                    if s_score > t_score:
+                        mol += pat
+                    den += pat
+
+print(mol/den)

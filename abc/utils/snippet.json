@@ -1,0 +1,886 @@
+{
+    "res = 0": {
+        "prefix": "res0",
+        "body": [
+            "res = 0",
+        ],
+        "description": "res = 0"
+    },
+    "res = \"\"": {
+        "prefix": "rese",
+        "body": [
+            "res = \"\"",
+        ],
+        "description": "res = 0"
+    },
+    "res_list = []": {
+        "prefix": "resl",
+        "body": [
+            "res_list = []",
+        ],
+        "description": "res_list = []"
+    },
+    "res_set = set()": {
+        "prefix": "ress",
+        "body": [
+            "res_set = set()",
+        ],
+        "description": "res_set = set()"
+    },
+    "res_dict = {}": {
+        "prefix": "resd",
+        "body": [
+            "res_dict = {}",
+        ],
+        "description": "res_dict = {}"
+    },
+    "count = 0": {
+        "prefix": "cou0",
+        "body": [
+            "count = 0",
+        ],
+        "description": "res = 0"
+    },
+    "res += 1": {
+        "prefix": "res1",
+        "body": [
+            "res += 1",
+        ],
+        "description": "res += 1"
+    },
+    "count += 1": {
+        "prefix": "cou1",
+        "body": [
+            "count += 1",
+        ],
+        "description": "count += 1"
+    },
+    "res = float(\"INF\")": {
+        "prefix": "resi",
+        "body": [
+            "res = float(\"INF\")",
+        ],
+        "description": "res = float(\"INF\")"
+    },
+    "float(\"INF\")": {
+        "prefix": "floi",
+        "body": [
+            "float(\"INF\")",
+        ],
+        "description": "float(\"INF\")"
+    },
+    "print(\"Yes\")": {
+        "prefix": "priye",
+        "body": [
+            "print(\"Yes\")",
+        ],
+        "description": "print(\"Yes\")"
+    },
+    "print(\"No\")": {
+        "prefix": "prino",
+        "body": [
+            "print(\"No\")",
+        ],
+        "description": "print(\"No\")"
+    },
+    "print(res)": {
+        "prefix": "prir",
+        "body": [
+            "print(res)",
+        ],
+        "description": "print(res)"
+    },
+    "print(*res_list)": {
+        "prefix": "pri*",
+        "body": [
+            "print(*res_list)",
+        ],
+        "description": "print(*res_list)"
+    },
+    "print( ,sep='\n'": {
+        "prefix": "sepn",
+        "body": [
+            "sep='\\n'",
+        ],
+        "description": "sep='\n'"
+    },
+    "print(\"\".join(res_list))": {
+        "prefix": "prij",
+        "body": [
+            "print(\"\".join(res_list))",
+        ],
+        "description": "print(\"\".join(res_list))"
+    },
+    "print(-1)": {
+        "prefix": "pri-",
+        "body": [
+            "print(-1)",
+        ],
+        "description": "print(-1)"
+    },
+    "print(\"Takahashi\")": {
+        "prefix": "prit",
+        "body": [
+            "print(\"Takahashi\")",
+        ],
+        "description": "print(\"Takahashi\")"
+    },
+    "print(\"Aoki\")": {
+        "prefix": "pria",
+        "body": [
+            "print(\"Aoki\")",
+        ],
+        "description": "print(\"Aoki\")"
+    },
+    "fori": {
+        "prefix": "fori",
+        "body": [
+            "for i in range(N):",
+        ],
+        "description": "for i in range(N):"
+    },
+    "for_": {
+        "prefix": "for_",
+        "body": [
+            "for _ in range(N):",
+        ],
+        "description": "for _ in range(N):"
+    },
+    "forij": {
+        "prefix": "forij",
+        "body": [
+            "for i in range(N):",
+            "    for j in range(N):",
+        ],
+        "description": "for i and j"
+    },
+    "forkl": {
+        "prefix": "forkl",
+        "body": [
+            "for k in range(N):",
+            "    for l in range(N):",
+        ],
+        "description": "for k and l"
+    },
+    "forijk": {
+        "prefix": "forijk",
+        "body": [
+            "for i in range(N):",
+            "    for j in range(M):",
+            "        for k in range(M):",
+        ],
+        "description": "for i and j and k"
+    },
+    "fora": {
+        "prefix": "fora",
+        "body": [
+            "for a in A_list:",
+        ],
+        "description": "for a:"
+    },
+    "forAlist": {
+        "prefix": "forAl",
+        "body": [
+            "for A_list in A_lists:",
+        ],
+        "description": "for A_list"
+    },
+    "xy move eight list": {
+        "prefix": "xymoveei",
+        "body": [
+            "# 上、右上、右、右下、下、左下、左、左上",
+            "move_lists = [(0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1)]"
+        ],
+        "description": "Move eight direction list for xy"
+    },
+    "xy move four dict": {
+        "prefix": "xymovefou",
+        "body": [
+            "move_dict = {\"L\":(-1, 0), \"U\":(0, 1), \"R\":(1, 0), \"D\":(0, -1)}"
+        ],
+        "description": "Move four direction dict for xy"
+    },
+    "grid move eight list": {
+        "prefix": "gridmoveei",
+        "body": [
+            "# 上、右上、右、右下、下、左下、左、左上",
+            "move_lists = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1)]"
+        ],
+        "description": "Move eight direction list for grid"
+    },
+    "grid move four dict": {
+        "prefix": "gridmovefou",
+        "body": [
+            "move_dict = {\"L\":(-1, 0), \"U\":(0, -1), \"R\":(1, 0), \"D\":(0, 1)}"
+        ],
+        "description": "Move four direction dict for grid"
+    },
+    "if else Yes or No": {
+        "prefix": "ife",
+        "body": [
+            "if $1:",
+            "    print(\"Yes\")",
+            "else:",
+            "    print(\"No\")"
+        ],
+        "description": "If-else Yes/No"
+    },
+    "if elif else": {
+        "prefix": "ifif",
+        "body": [
+            "if :",
+            "elif :",
+            "else:"
+        ],
+        "description": "If-elif-else"
+    },
+    "if S_lists[i][j] == \"#\"": {
+        "prefix": "if#",
+        "body": [
+            "if S_lists[i][j] == \"#\""
+        ],
+        "description": "if S_lists[i][j] == \"#\""
+    },
+    "if S_lists[i][j] == \".\"": {
+        "prefix": "if.",
+        "body": [
+            "if S_lists[i][j] == \".\""
+        ],
+        "description": "if S_lists[i][j] == \"#\""
+    },
+	"alphabet list": {
+        "prefix": "alplist",
+        "body": [
+            "alp_list = [chr(i) for i in range(ord('a'), ord('z') + 1)]"
+        ],
+        "description": "alphabet list"
+    },
+    "alphabet dict": {
+        "prefix": "alpdict",
+        "body": [
+            "alp_dict = {chr(i):chr(i) for i in range(ord('a'), ord('z') + 1)}"
+        ],
+        "description": "alphabet dict"
+    },
+	"key sorted": {
+        "prefix": "kso",
+        "body": [
+            "sorted_A_list = sorted(A_list, key=lambda x: x[1])"
+        ],
+        "description": "key sorted"
+    },
+	"group list": {
+        "prefix": "groul",
+        "body": [
+            "g_list = [(k, list(v)) for k, v in it.groupby(S)]"
+        ],
+        "description": "filter list"
+    },
+    "1次元imos法": {
+        "prefix": "imos_1D",
+        "body": [
+        "imos_list = [0]*(N+2)",
+        "for _ in range(M):",
+        "    L, R = map(int, input().split())",
+        "    imos_list[L] += 1",
+        "    imos_list[R+1] -= 1",
+        "",
+        "cum_list = [0]",
+        "# 両端は番兵なので除外しておく",
+        "for x in imos_list[1:-1]:",
+        "    cum_list.append(cum_list[-1]+x)"
+        ],
+        "description": "1次元imos法"
+    },
+    "2次元imos法": {
+		"prefix": "imos_2D",
+		"body": [
+			"# H: 行数, W: 列数",
+			"H, W = 100, 100",
+			"imos_lists = [[0] * (W + 2) for _ in range(H + 2)]",
+			"for _ in range(N):",
+			"    y1, y2, x1, x2 = map(int, input().split())",
+			"    imos_lists[y1][x1] += 1          # 左上（始点）",
+			"    imos_lists[y1][x2 + 1] -= 1      # 右上（x方向の終点の 1つ右）",
+			"    imos_lists[y2 + 1][x1] -= 1      # 左下（y方向の終点の 1つ下）",
+			"    imos_lists[y2 + 1][x2 + 1] += 1  # 右下（重複して引いた分を戻す）",
+			"",
+			"# 横方向の累積和",
+			"for y in range(1, H + 2):",
+			"    for x in range(1, W + 2):",
+			"        imos_lists[y][x] += imos_lists[y][x - 1]",
+			"",
+			"# 縦方向の累積和",
+			"for y in range(1, H + 2):",
+			"    for x in range(1, W + 2):",
+			"        imos_lists[y][x] += imos_lists[y - 1][x]"
+		],
+		"description": "2次元imos法"
+	},
+    "2次元累積和": {
+		"prefix": "cum_2D",
+		"body": [
+			"# H: 行数, W: 列数, A: 元の2次元配列 (0-indexed前提)",
+			"# cum_lists[i][j]: 左上 (0,0) から 右下 (i-1, j-1) までの矩形和",
+			"cum_lists = [[0] * (W + 1) for _ in range(H + 1)]",
+			"for i in range(H):",
+			"    for j in range(W):",
+			"        cum_lists[i+1][j+1] = cum_lists[i+1][j] + cum_lists[i][j+1] - cum_lists[i][j] + g_lists[i][j]",
+			"",
+			"# クエリ処理例: [i, i+k] x [j, k] の矩形和を取得 (1-indexed)",
+			"# sum_val = cum_lists[r2][c2] - cum_lists[r1 - 1][c2] - cum_lists[r2][c1 - 1] + cum_lists[r1 - 1][c1 - 1]"
+		],
+		"description": "2次元累積和 (構築 O(HW), クエリ O(1))"
+	},
+    "eratosthenes": {
+        "prefix": "eratos",
+        "body": [
+        "# 計算量はO(NloglogN)",
+        "def sieve_of_eratosthenes(n: int) -> list[int]:",
+        "    \"\"\"n以下の素数を高速に列挙する (エラトステネスの篩)\"\"\"",
+        "    if n < 2:",
+        "        return []",
+        "    ",
+        "    size = (n - 1) // 2 + 1",
+        "    is_prime = [True] * size",
+        "    is_prime[0] = False",
+        "    ",
+        "    for i in range(1, int(n**0.5) // 2 + 1):",
+        "        if is_prime[i]:",
+        "            p = 2 * i + 1",
+        "            start = (p * p) // 2",
+        "            is_prime[start::p] = [False] * ((size - start - 1) // p + 1)",
+        "            ",
+        "    return [2] + [2 * i + 1 for i, prime in enumerate(is_prime) if prime]"
+        ],
+        "description": "エラトステネスの篩（スライス高速化＆偶数スキップ版）でn以下の素数を列挙する。"
+    },
+    "divisors_list_func": {
+        "prefix": "divlist_for_n",
+        "body": [
+        "# 計算量はO(√n)",
+        "def divisors(n: int) -> list:",
+        "    res = []",
+        "    i = 1",
+        "    while i * i <= n:",
+        "        if n % i == 0:",
+        "            res.append(i)",
+        "            if i * i != n:",
+        "                res.append(n // i)",
+        "        i += 1",
+        "    res.sort()",
+        "    return res"
+        ],
+        "description": "nの正の約数を小さい順に返す"
+    },
+    "get_all_divisors_until_n": {
+        "prefix": "divlist_until_n",
+        "body": [
+            "# 計算量はO(N)logN",
+            "def get_divisors_until_n(n: int) -> list[list[int]]:",
+            "    # 各整数の約数を格納するリストを初期化",
+            "    divisors = [[] for _ in range(n + 1)]",
+            "    ",
+            "    # 1からnまでの各整数iについて、その倍数にiを追加していく",
+            "    for i in range(1, n + 1):",
+            "        for j in range(i, n + 1, i):",
+            "            divisors[j].append(i)",
+            "            ",
+            "    return divisors"
+        ],
+        "description": "1~nまでのそれぞれの約数列挙をする"
+    },
+    "divisors_num_func": {
+        "prefix": "divnum",
+        "body": [
+        "# 計算量はO(N)logN",
+        "def count_divisors_all(n):",
+        "   # 約数の個数を記録する配列（初期値 1）",
+        "   div_count = [1] * (n + 1)",
+        "   # エラトステネスの篩の要領で更新",
+        "   for i in range(2, n + 1):",
+        "       for j in range(i, n + 1, i):",
+        "           div_count[j] += 1",
+        "   return div_count"
+        ],
+        "description": "nまでの約数の個数を全て返す"
+    },
+    "PollardRhoSnippet": {
+        "prefix": "pollardrho",
+        "description": "Pollard’s Rho + Miller-Rabin を使った高速素因数分解スニペット",
+        "body": [
+            "def miller_rabin(n):",
+            "    if n < 2:",
+            "        return False",
+            "    small_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23]",
+            "    for sp in small_primes:",
+            "        if n == sp:",
+            "            return True",
+            "        if n % sp == 0 and n != sp:",
+            "            return False",
+            "",
+            "    test_bases = [2, 325, 9375, 28178, 450775, 9780504, 1795265022]",
+            "    d = n - 1",
+            "    s = 0",
+            "    while d % 2 == 0:",
+            "        d //= 2",
+            "        s += 1",
+            "",
+            "    def check(a, s, d, n):",
+            "        x = pow(a, d, n)",
+            "        if x == 1 or x == n - 1:",
+            "            return True",
+            "        for _ in range(s - 1):",
+            "            x = (x * x) % n",
+            "            if x == n - 1:",
+            "                return True",
+            "        return False",
+            "",
+            "    for a in test_bases:",
+            "        if a % n == 0:  # a が n と同じ場合はスキップ",
+            "            return True",
+            "        if not check(a, s, d, n):",
+            "            return False",
+            "    return True",
+            "",
+            "",
+            "def is_prime(n):",
+            "    return miller_rabin(n)",
+            "",
+            "",
+            "def gcd(a, b):",
+            "    \"\"\"ユークリッドの互除法\"\"\"",
+            "    while b:",
+            "        a, b = b, a % b",
+            "    return a",
+            "",
+            "",
+            "def pollard_rho(n):",
+            "    import random",
+            "",
+            "    if n % 2 == 0:",
+            "        return 2",
+            "    if is_prime(n):",
+            "        return n  # n が素数の場合はそのまま返す",
+            "",
+            "    while True:",
+            "        x = random.randrange(2, n - 1)",
+            "        c = random.randrange(1, n - 1)",
+            "        y = x",
+            "        d = 1",
+            "        while d == 1:",
+            "            x = (x * x + c) % n",
+            "            y = (y * y + c) % n",
+            "            y = (y * y + c) % n",
+            "            d = gcd(abs(x - y), n)",
+            "            if d == n:",
+            "                break",
+            "        if d > 1 and d < n:",
+            "            return d",
+            "",
+            "",
+            "# 計算量は0(N^1/4logN)程度なので非常に高速",
+            "###### 注意! 取得したリストの中身はランダムなので必要によっては常に同じ結果が欲しい時はsortをすること",
+            "def prime_factorize(n):",
+            "    if n == 1:",
+            "        return []",
+            "    if is_prime(n):",
+            "        return [n]",
+            "    divisor = pollard_rho(n)",
+            "    return prime_factorize(divisor) + prime_factorize(n // divisor)"
+        ]
+    },
+    "legendre rformula": {
+        "prefix": "legendre",
+        "body": [
+            "def legendre_formula(N, p):",
+            "    count = 0",
+            "    power = p",
+            "    while power <= N:",
+            "        count += N // power",
+            "        power *= p",
+            "    return count"
+        ],
+        "description": "ルジャンドルの定理：N!に含まれる素数 p の指数を求める関数"
+    },
+    "Mod Division": {
+        "prefix": "mdiv_print",
+        "body": [
+        "# 割り算を期待値で出力(mol_nが分子、den_nが分母)",
+        "g = math.gcd(${1:mol_n}, ${2:den_n})",
+        "print((${1:mol_n}//g * pow(${2:den_n}//g, MOD-2, MOD)) % MOD)"
+        ],
+        "description": "割り算の代わりに逆元を用いて出力"
+    },
+    "Dijkstra Shortest Path": {
+    "prefix": "diks",
+    "body": [
+        "hq_list = [(0, ${1:1})]",
+        "hq.heapify(hq_list)",
+        "res_list = [float(\"inf\")] * (${2:N} + 1)",
+        "res_list[${1:1}] = 0",
+        "while hq_list:",
+        "    w, u = hq.heappop(hq_list)",
+        "    if w > res_list[u]:",
+        "        continue",
+        "",
+        "    for c, v in ${3:g_lists}[u]:",
+        "        ww = w + c",
+        "        if res_list[v] > ww:",
+        "            res_list[v] = ww",
+        "            hq.heappush(hq_list, (ww, v))"
+        ],
+        "description": "ダイクストラ法（単一始点最短経路）"
+    },
+    "Bellman-Ford (All Negative)": {
+    "prefix": "bellman_ford",
+    "body": [
+      "INF = 10**36",
+      "def bellman_ford_all_negative(G, s):",
+      "    \"\"\"",
+      "    1つのスタート地点を起点とした最短経路を求める時に使用し、計算量はO(VE)(すべての点を対象にする場合はワーシャルフロイド法)",
+      "    s: スタートとなる頂点の番号",
+      "    G: 隣接グラフ(例：[[(2, 10), (3, 50)], [(3, 20)], [(4, -40)], [(1, 10)]]) ※要素の意味は(接続している頂点、重み)",
+      "    ",
+      "    返り値:",
+      "    costs: 頂点sからの最小コスト（負の閉路がある場合は正確なものではなくなるので注意）",
+      "    negative: ある頂点が負の閉路の影響を受けるかどうかの真偽値リスト",
+      "    \"\"\"",
+      "    n = len(G)",
+      "    costs = [INF] * n",
+      "    costs[s] = 0",
+      "    ",
+      "    # 1. 通常の最短経路計算（V-1回の更新）",
+      "    for _ in range(n - 1):",
+      "        for v in range(n):",
+      "            if costs[v] == INF:",
+      "                continue",
+      "            for to, c in G[v]:",
+      "                if costs[to] > costs[v] + c:",
+      "                    costs[to] = costs[v] + c",
+      "                    ",
+      "    # 2. 負の閉路の検出と影響の伝播（さらにV回の更新）",
+      "    # negative[i] = True なら、スタートから頂点iへのコストは -無限大",
+      "    negative = [False] * n",
+      "    for _ in range(n):",
+      "        for v in range(n):",
+      "            if costs[v] == INF:",
+      "                continue",
+      "            for to, c in G[v]:",
+      "                # 「通常通り更新される」または「遷移元がすでに負の閉路の影響下にある」場合",
+      "                if costs[to] > costs[v] + c or negative[v]:",
+      "                    costs[to] = costs[v] + c",
+      "                    negative[to] = True",
+      "                    ",
+      "    return costs, negative",
+      "$0"
+    ],
+    "description": "Bellman-Ford algorithm to detect all nodes affected by negative cycles."
+    },
+	"trans position for list": {
+        "prefix": "tral",
+        "body": [
+            "trans_A_lists = [list(row) for row in zip(*A_lists)]"
+        ],
+        "description": "Trans position for lists"
+    },
+	"rotate list": {
+        "prefix": "rol",
+        "body": [
+            "A_lists = [list(reversed(items)) for items in zip(*A_lists)] # 90度右回転",
+            "A_lists = [list(items) for items in zip(*map(reversed, A_lists))] # 90度左回転"
+        ],
+        "description": "rotate list"
+    },
+	"import library": {
+        "prefix": "iml",
+        "body": [
+            "import sys, math, itertools as it, bisect as bi, functools as ft, copy, decimal, heapq as hq",
+            "from more_itertools import distinct_permutations",
+            "from functools import cmp_to_key",
+            "#  天井と床関数は丸める仕様らしく、桁数が上がると期待通りの動作をしないことを確認したのでimportしていない",
+            "from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP, ROUND_DOWN # 左のROUND_HALF_UPから四捨五入、四捨五入(銀行丸め)、切り上げ、切り捨て",
+            "#  SortedListは「key=lambda x: -x」で降順にできる。SortedDictはlistやsetの値を持てる、peekitem(bisect_left(1))のイメージで1に近いキーの値を取得可能",
+            "from sortedcontainers import SortedSet, SortedList, SortedDict",
+            "from collections import defaultdict, deque, Counter",
+            "from atcoder.dsu import DSU",
+            "#  詳細：https://atcoder.github.io/ac-library/production/document_ja/segtree.html?utm_source=chatgpt.com",
+            "#  定義例(最大値)：def f(a, b): return max(a, b) seg = SegTree(f, -float('INF'), n_list)",
+            "#  使用例1：seg.prod(L-1, R)→Lは-1する, seg.get(i-1)→0-baseのインデックス",
+            "#  使用例2：区間更新はseg.set(2, 2)、区間加算はseg.set(2, seg.get(2) + 10)",
+            "from atcoder.segtree import SegTree # 単位元→和：0、乗算：1、最大：-float('INF'), 最小：float('INF')、GCD：0、LCM：1、OR：0、XOR：0、AND：(1<<60)-1(bit数が不足していれば増やす)",
+            "#  Qiita：https://qiita.com/hyouchun/items/9fc32e3d8bdd9c59e3f6 (区間更新、区間加算の双方の例がある)",
+            "from atcoder.lazysegtree import LazySegTree",
+            "sys.setrecursionlimit(10**7)",
+            ""
+        ],
+        "description": "import library"
+    },
+	"itertools for permutations": {
+        "prefix": "itp",
+        "body": [
+            "p_list = list(itertools.permutations(A_list, 2))"
+        ],
+        "description": "itertools for permutations"
+    },
+	"itertools for combinations": {
+        "prefix": "itc",
+        "body": [
+            "c_list = list(itertools.combinations(A_list, 2))"
+        ],
+        "description": "itertools for combinations"
+    },
+	"round": {
+        "prefix": "rou",
+        "body": [
+            "decimal.getcontext().prec = 28 # 有効桁数",
+            "def remove_exponent(d):",
+            "    return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()",
+            "# 1E0：2025.563->2026、1E1：2025.563->2030、1E2E：2025.563->2000",
+            "n = remove_exponent(Decimal(N).quantize(Decimal(f'1E0'), ROUND_HALF_UP))",
+            "# 0.1：2025.563->2025.6、0.01：2025.563->2025.56、0.001：2025.563->235.563、0.0001：2025.563->235.563",
+            "n = remove_exponent(Decimal(N).quantize(Decimal(f'0.1'), ROUND_HALF_UP))",
+            ""
+        ],
+        "description": "round"
+    },
+    "Combination Memo": {
+        "prefix": "comb_memo",
+        "body": [
+            "class Combination:",
+            "",
+            "    def __init__(self, max_n: int, mod: int = 10**9 + 7):",
+            "        self.mod = mod",
+            "        self.fact = [1] * (max_n + 1)",
+            "        self.inv_fact = [1] * (max_n + 1)",
+            "",
+            "        # 階乗の計算 O(N)",
+            "        for i in range(1, max_n + 1):",
+            "            self.fact[i] = (self.fact[i - 1] * i) % self.mod",
+            "",
+            "        # フェルマーの小定理より、fact[MAX] の逆元を求める",
+            "        self.inv_fact[max_n] = pow(self.fact[max_n], self.mod - 2, self.mod)",
+            "",
+            "        # 階乗の逆元を後ろからテーブル化 O(N)",
+            "        for i in range(max_n - 1, -1, -1):",
+            "            self.inv_fact[i] = (self.inv_fact[i + 1] * (i + 1)) % self.mod",
+            "",
+            "    def get(self, n: int, k: int) -> int:",
+            "        if k < 0 or k > n:",
+            "            return 0",
+            "        return self.fact[n] * self.inv_fact[k] % self.mod * self.inv_fact[n - k] % self.mod",
+            "",
+            "MOD = 10**9 + 7",
+            "comb = Combination(N, MOD)"
+        ],
+        "description": "メモとMODを利用することで、同じ組み合わせの計算を高速に導出"
+    },
+    "Combination MOD": {
+        "prefix": "comb_mod",
+        "body": [
+            "MOD = 10**9 + 7",
+            "def nCr_MOD(n, r):",
+            "    if r < 0 or r > n:",
+            "        return 0",
+            "    r = min(r, n - r)",
+            "    num = 1",
+            "    den = 1",
+            "    for i in range(r):",
+            "        num = (num * (n - i)) % MOD",
+            "        den = (den * (i + 1)) % MOD",
+            "    return (num * pow(den, MOD - 2, MOD)) % MOD"
+        ],
+        "description": "MODを利用して組み合わせ数を高速に導出"
+    },
+    "is_prime": {
+        "prefix": "is_prime",
+        "body": [
+            "def is_prime(n: int) -> bool:",
+            "    if n <= 1:",
+            "        return False",
+            "    if n <= 3:",
+            "        return True",
+            "    if n % 2 == 0 or n % 3 == 0:",
+            "        return False",
+            "    i = 5",
+            "    while i * i <= n:",
+            "        if n % i == 0 or n % (i + 2) == 0:",
+            "            return False",
+            "        i += 6",
+            "    return True"
+        ],
+        "description": "A function to check if a number is prime"
+    },
+    "is_edit": {
+        "prefix": "is_edit",
+        "body": [
+        "def is_edit_distance_leq_n(s: str, t: str, n: int) -> bool:",
+        "    if abs(len(s) - len(t)) > n:",
+        "        return False",
+        "",
+        "    if len(s) > len(t):",
+        "        s, t = t, s",
+        "",
+        "    ls, lt = len(s), len(t)",
+        "    if ls == lt:",
+        "        diff = sum(1 for a, b in zip(s, t) if a != b)",
+        "        return diff <= n",
+        "",
+        "    i = j = 0",
+        "    edits = 0",
+        "    while i < ls and j < lt:",
+        "        if s[i] == t[j]:",
+        "            i += 1",
+        "            j += 1",
+        "        else:",
+        "            edits += 1",
+        "            if edits > n:",
+        "                return False",
+        "            j += 1",
+        "    edits += (lt - j)",
+        "    return edits <= n"
+        ],
+        "description": "編集距離がn以下か判定"
+    },
+    "is_common_line": {
+        "prefix": "is_common_line",
+        "body": [
+            "def is_common_line(l, r, ll, rr):",
+            "    if not (r < ll or rr < l):",
+            "        return True",
+            "    return False"
+        ],
+        "description": "Check if two numeric intervals [l, r] and [ll, rr] overlap"
+    },
+    "is_right_angle_func": {
+        "prefix": "is_right_angle",
+        "body": [
+        "def is_right_angle(p, q, r):",
+        "    v1x, v1y = p[0] - q[0], p[1] - q[1]",
+        "    v2x, v2y = r[0] - q[0], r[1] - q[1]",
+        "    return v1x * v2x + v1y * v2y == 0"
+        ],
+        "description": "Check if the angle between three points (p, q, r) is a right angle"
+    },
+    "is_bipartite_graph": {
+        "prefix": "is_bip",
+        "body": [
+            "is_bip = True",
+            "color_list = [-1] * (${1:N} + 1)",
+            "",
+            "for start in range(1, ${1:N} + 1):",
+            "    if color_list[start] != -1:",
+            "        continue",
+            "",
+            "    dq = deque([start])",
+            "    color_list[start] = 0",
+            "",
+            "    while dq:",
+            "        v = dq.popleft()",
+            "",
+            "        for nv in ${2:g_lists}[v]:",
+            "            if color_list[nv] == -1:",
+            "                color_list[nv] = color_list[v] ^ 1",
+            "                dq.append(nv)",
+            "",
+            "            elif color_list[nv] == color_list[v]:",
+            "                is_bip = False",
+            "                break"
+            ],
+            "description": "二部グラフの判定"
+    },
+    "lcm": {
+        "prefix": "lcm",
+        "body": [
+            "def lcm(a: int, b: int) -> int:",
+            "    return abs(a*b) // math.gcd(a, b)"
+        ],
+        "description": "A function to calculate LCM of two numbers"
+    },
+    "base n convert": {
+        "prefix": "basencon",
+        "description": "Converts a number from one base to another",
+        "body": [
+            "def convert_base(num_str: str, from_base: int, to_base: int) -> str:",
+            "    decimal_value = int(num_str, from_base)",
+            "    digits = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\"",
+            "    if decimal_value == 0:",
+            "        return \"0\"",
+            "    result = \"\"",
+            "    while decimal_value > 0:",
+            "        remainder = decimal_value % to_base",
+            "        result = digits[remainder] + result",
+            "        decimal_value //= to_base",
+            "    return result"
+        ]
+    },
+    "Meguru binary search": {
+        "prefix": "binarysearch",
+        "body": [
+            "def is_ok(n):",
+            "    return n > 5",
+            "",
+            "ok, ng = 0, 10**18+1  # 最大値を導出する場合は左側で確実にTrueとなる初期値を選択する。ただし例えばngの値を大きくしすぎると最大値が問題の閾値外になってしまうことがあるので注意。",
+            "while abs(ok - ng) > 1:  # 絶対値を使用しているのでok と ng の大小に関係なく、同じ条件式で良い。",
+            "    mid = (ok + ng) // 2",
+            "    # ok と ng の大小に関わらず変更なし。(参考：https://zenn.dev/forcia_tech/articles/20191223_advent_calendar)",
+            "    if is_ok(mid):",
+            "        ok = mid",
+            "    else:",
+            "        ng = mid"
+        ],
+        "description": "めぐる式二分探索の最小値探索"
+    },
+    "compare_to_key": {
+        "prefix": "comtokey",
+        "body": [
+            "def compare_to_key(arg1, arg2):",
+            "    if arg1 == arg2:",
+            "        return 0 # 第一と第二引数が同じ時は0を利用",
+            "    if arg1 < arg2:",
+            "        return -1 # 第一の方が第二引数よりも小さい時は-1を利用",
+            "    if arg1 > arg2:",
+            "        return 1 # 第一の方が第二引数よりも小さい時は1を利用"
+        ],
+        "description": "A comparison function for use with cmp_to_key."
+    },
+    "bit search by product": {
+        "prefix": "bitsearch",
+        "body": [
+            "bit_lists = list(it.product([0, 1], repeat=N))",
+            "for bit_list in bit_lists:",
+            "    for i, b in enumerate(bit_list):",
+            "        if b == 1:",
+            "        else:",
+        ],
+        "description": "ビット全探索"
+    },
+    "dimension compression": {
+        "prefix": "dimcomp",
+        "body": [
+            "x_dict = {x: i for i, x in enumerate(sorted(list(set(${1:x_list}))), 1)}"
+        ],
+        "description": "次元圧縮"
+    },
+	"lambda": {
+        "prefix": "lam",
+        "body": [
+            "lambda x: x[1]"
+        ],
+        "description": "lambda x: x[1]"
+    },
+	"deep copy": {
+        "prefix": "dee",
+        "body": [
+            "c_A_lists = [x[:] for x in A_lists]"
+        ],
+        "description": "deep copy"
+    },
+	"exit()": {
+        "prefix": "exi",
+        "body": [
+            "exit()"
+        ],
+        "description": "exit()"
+    },
+}

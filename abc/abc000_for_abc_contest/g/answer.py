@@ -1,3 +1,4 @@
+# 参照URL：https://github.com/Riki-Arai/algorithm_study/blob/main/abc/utils/snippet.json
 import sys; sys.setrecursionlimit(10**7)
 
 N = int(input()) # 数値：1
